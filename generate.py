@@ -24,18 +24,20 @@ import html
 # protocol -> colour
 COL={'A2A':'#2f7fd1','KYA-OS':'#e0782a','AP2':'#2e9e6b','x402':'#8a56c2','MPP':'#c2398a','L402':'#b8960b','cheqd':'#1b8a8a',
      'ACP':'#6b7a8f','TAP':'#6b7a8f','KYAPay':'#c4572d','Baselayer':'#6b7a8f','MCP':'#2f7fd1',
-     'UCP':'#8c5a2b','PAP':'#4f46e5','ANS':'#0f7fa6','WebBotAuth':'#7a4a2a'}
-LABEL={'WebBotAuth':'Web Bot Auth'}
-# Protocols whose ratings are provisional (specification unpublished or rated from secondary sources).
+     'UCP':'#8c5a2b','PAP':'#4f46e5','ANS':'#0f7fa6','WebBotAuth':'#7a4a2a','x401':'#b3261e'}
+LABEL={'WebBotAuth':'Web Bot Auth','PAP':'PAP (Poppy)'}
+# Protocols whose ratings are provisional (rated from announcements, not the specification text).
+# PAP (Poppy): draft 0.1 published 9 Oct 2026, rated from Sierra's announcement post.
+# x401 (Proof): rated from Proof's launch post; spec at x401.id not yet read.
 # Their chips render dashed, and a box owned only by provisional protocols gets a dotted border.
-PROVISIONAL={'PAP'}
+PROVISIONAL={'PAP','x401'}
 # (name, [(proto, level)], note)  level: F full, P partial
 def cap(name, owners, gap=False): return dict(name=name, owners=owners, gap=gap)
 ROWS=[
  ("Payment", [
    ("Payment authority", [
      cap("Mandate authorisation",[('AP2','F'),('ACP','P'),('TAP','P'),('UCP','P')]),
-     cap("Spend limits and constraints",[('AP2','F')]),
+     cap("Spend limits and constraints",[('AP2','F'),('x401','P')]),
      cap("Receipts and dispute evidence",[('AP2','F')]),
      cap("Binding the decision to the payment",[],True)]),
    ("Payment wire and settlement", [
@@ -48,15 +50,15 @@ ROWS=[
  ("Identity and delegation", [
    ("Agent identity", [
      cap("Agent identity credential",[('KYA-OS','F'),('KYAPay','F'),('Baselayer','F'),('ANS','F'),('PAP','P')]),
-     cap("Holder-of-key binding",[('KYA-OS','F'),('AP2','P'),('WebBotAuth','P')]),
-     cap("Owner and deployer verification",[('Baselayer','F'),('KYAPay','F'),('ANS','P')])]),
+     cap("Holder-of-key binding",[('KYA-OS','F'),('AP2','P'),('WebBotAuth','P'),('x401','P')]),
+     cap("Owner and deployer verification",[('Baselayer','F'),('KYAPay','F'),('x401','F'),('ANS','P')])]),
    ("Delegation", [
-     cap("Human-to-agent authority",[('KYA-OS','F'),('AP2','P'),('PAP','P')]),
+     cap("Human-to-agent authority",[('KYA-OS','F'),('x401','F'),('AP2','P'),('PAP','P')]),
      cap("Agent-to-agent delegation chain",[('KYA-OS','F')])]),
    ("Request proof", [
-     cap("Per-request proof",[('KYA-OS','F'),('WebBotAuth','F'),('x402','P'),('L402','P')]),
+     cap("Per-request proof",[('KYA-OS','F'),('WebBotAuth','F'),('x401','P'),('x402','P'),('L402','P')]),
      cap("Response proof",[('KYA-OS','P')]),
-     cap("Replay protection",[('KYA-OS','F'),('x402','P'),('WebBotAuth','P')]),
+     cap("Replay protection",[('KYA-OS','F'),('x401','P'),('x402','P'),('WebBotAuth','P')]),
      cap("Signing key directory",[('WebBotAuth','F')])]),
  ]),
  ("Business-facing", [
@@ -86,7 +88,7 @@ ROWS=[
      cap("Reciprocal did:web and did:cheqd linkage",[('cheqd','F')]),
      cap("Versioned policy artefacts",[('cheqd','F')])]),
    ("Status", [
-     cap("Credential status and revocation",[('cheqd','F'),('KYA-OS','P'),('ANS','P')]),
+     cap("Credential status and revocation",[('cheqd','F'),('KYA-OS','P'),('ANS','P'),('x401','P')]),
      cap("Trust registry standing",[('cheqd','F')]),
      cap("Append-only transparency log",[('ANS','F')])]),
  ]),
@@ -136,7 +138,7 @@ rows=''
 for rname, groups in ROWS:
     g=''.join(f'<div class="grp"><div class="gt">{html.escape(gn)}</div><div class="caps">{"".join(box(c) for c in cs)}</div></div>' for gn,cs in groups)
     rows+=f'<div class="row"><div class="rl">{html.escape(rname)}</div><div class="groups">{g}</div></div>'
-legend=''.join(f'<span class="chip" style="--c:{COL[p]}">{LABEL.get(p,p)}</span>' for p in ['A2A','MCP','KYA-OS','KYAPay','ANS','WebBotAuth','AP2','x402','MPP','L402','UCP','cheqd'] if p in COL)+'<span class="chip" style="--c:#6b7a8f">ACP / TAP / Baselayer</span>'+'<span class="chip prov" style="--c:#4f46e5">PAP</span>'
+legend=''.join(f'<span class="chip" style="--c:{COL[p]}">{LABEL.get(p,p)}</span>' for p in ['A2A','MCP','KYA-OS','KYAPay','ANS','WebBotAuth','AP2','x402','MPP','L402','UCP','cheqd'] if p in COL)+'<span class="chip" style="--c:#6b7a8f">ACP / TAP / Baselayer</span>'+'<span class="chip prov" style="--c:#4f46e5">PAP (Poppy)</span>'+'<span class="chip prov" style="--c:#b3261e">x401</span>'
 page=f'''<!doctype html><meta charset=utf-8><style>
 body{{margin:0;padding:24px;background:#fff;font-family:Helvetica,Arial,'DejaVu Sans',sans-serif;color:#222;width:1560px}}
 h1{{font-size:20px;margin:0 0 4px}} .sub{{font-size:12px;color:#555;margin-bottom:14px}}
@@ -162,7 +164,7 @@ h1{{font-size:20px;margin:0 0 4px}} .sub{{font-size:12px;color:#555;margin-botto
 .k{{display:inline-block;width:14px;height:14px;border-radius:3px;margin:0 3px 0 10px;vertical-align:middle}}
 </style>
 <h1>{html.escape(TITLE)}</h1>
-<div class="sub">Which protocol owns each capability. Red = two or more full owners (overlap). Amber = one owner plus partial coverage. Dashed = gap. Filled chip = owns, outlined chip with <span class=h>◐</span> = partial. Author's assessment, October 2026; payment-protocol details are from secondary sources. PAP (Personal Agent Protocol) is provisional: its v0.1 specification is unpublished and it is rated from press coverage. UCP is rated from Google's developer blog, not its specification.</div>
+<div class="sub">Which protocol owns each capability. Red = two or more full owners (overlap). Amber = one owner plus partial coverage. Dashed = gap. Filled chip = owns, outlined chip with <span class=h>◐</span> = partial. Author's assessment, October 2026; payment-protocol details are from secondary sources. PAP (Personal Agent Protocol, nicknamed Poppy) and x401 (Proof) are provisional: PAP is rated from Sierra's announcement of draft 0.1, x401 from Proof's launch post, and neither specification has been read. UCP is rated from Google's developer blog, not its specification.</div>
 {rows}
 <div class="leg">{legend}
 <span class="k" style="background:#fde3d0;border:3px solid #d32f2f"></span>overlap (two or more full owners)
