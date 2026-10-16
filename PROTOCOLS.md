@@ -81,7 +81,9 @@ Three charts, drawn from the data in the metrics table. They follow the system l
 
 **Stars.** A2A leads, then MCP, x402, UCP and AP2. AP2 and ACP hold thousands of stars with no recent commits, so their attention has outrun their activity. Hollow dots mark repositories with no commits in the last 13 weeks.
 
-**Not shown:** star history over time. GitHub's stargazer endpoints returned nothing in this environment, so stars appear only as a snapshot. SDK downloads exist only for npm packages, so AP2, ACP, TAP, L402 and ANS have no line in the first chart.
+**No data is marked, not hidden.** Dashed boxes and rows show where a protocol has no series, with the reason. Baselayer KYA is a closed commercial product, so it has no repository or package on any chart. Protocols without an official npm package identified (AP2, ACP, TAP, L402, ANS, PAP, KYAPay) are listed under "No download series". cheqd has download data but is not plotted, because the palette allows eight series. "Not collected" means none was found, not that none exists.
+
+**Not shown:** star history over time. GitHub's stargazer endpoints returned nothing in this environment, so stars appear only as a snapshot. SDK downloads exist only for npm packages, so those protocols have no line in the first chart.
 
 Refresh with `python3 traction/fetch.py` (needs `gh` logged in), then `python3 traction/render.py`. The data behind the charts is in [`traction/data.json`](./traction/data.json).
 

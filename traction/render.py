@@ -32,9 +32,26 @@ text{{font-family:{FONT};fill:var(--ink2)}}
 .grid{{stroke:var(--grid);stroke-width:1}}
 .axis{{stroke:var(--axis);stroke-width:1}}
 .ln{{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}}
+.nd{{fill:none;stroke:var(--axis);stroke-width:1.5;stroke-dasharray:5 4}}
+.ndt{{font-size:11px;font-style:italic;fill:var(--ink3)}}
 .hit{{fill:transparent}}
 .hit:hover{{fill:var(--ink);fill-opacity:.15}}
 {extra}</style>'''
+
+
+# Protocols with no series in a chart, and why. Shown as dashed "no data" markers rather than silently omitted.
+NOT_PUBLIC = 'Closed commercial product: no public repository or package'
+NO_NPM = [
+    ('Baselayer KYA', NOT_PUBLIC),
+    ('AP2', 'Not collected: no official npm package identified'),
+    ('ACP', 'Not collected: no official npm package identified'),
+    ('TAP', 'Not collected: no official npm package identified'),
+    ('L402', 'Not collected: no official npm package identified'),
+    ('ANS', 'Not collected: no official npm package identified'),
+    ('PAP (Poppy)', 'Not collected: no package identified (spec and site only)'),
+    ('KYAPay', 'Not collected: package not identified'),
+    ('cheqd', 'Data exists (1.2K a week) but not plotted: the palette allows eight series'),
+]
 
 
 def esc(s):
@@ -68,8 +85,8 @@ def nudge(ys, gap):
 # ---------------------------------------------------------------- chart 1: npm downloads over time
 def chart_npm():
     names = ['MCP', 'A2A', 'x402', 'MPP', 'Web Bot Auth', 'UCP', 'KYA-OS', 'x401']
-    W, H = 960, 610
-    L, R, T, B = 64, 190, 112, 62
+    W, H = 960, 820
+    L, R, T, B = 64, 190, 112, 272
     pw, ph = W - L - R, H - T - B
     d0 = dt.date(2025, 4, 21)
     d1 = dt.date(2026, 10, 5)
@@ -118,6 +135,12 @@ def chart_npm():
         b.append(f'<path d="M{x+3:.1f},{y:.1f} L{lxp-3},{y2:.1f}" style="stroke:var(--s{i+1});stroke-width:1;fill:none"/>'
                  f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" style="fill:var(--s{i+1});stroke:var(--surface);stroke-width:2"/>'
                  f'<text class="lab" x="{lxp}" y="{y2+4:.1f}">{esc(n)} <tspan class="val">{fmt(v)}</tspan></text>')
+    ny = T + ph + 40
+    b.append(f'<rect class="nd" x="{L}" y="{ny}" width="{pw+R-24}" height="{12+len(NO_NPM)*16+22}" rx="6"/>'
+             f'<text class="lab" x="{L+12}" y="{ny+20}" style="font-weight:700">No download series</text>')
+    for k, (n, why) in enumerate(NO_NPM):
+        b.append(f'<text class="ndt" x="{L+12}" y="{ny+40+k*16}" style="font-style:normal;fill:var(--ink)">{esc(n)}</text>'
+                 f'<text class="ndt" x="{L+112}" y="{ny+40+k*16}">{esc(why)}</text>')
     half = len(names) // 2
     for k, grp in enumerate((names[:half], names[half:])):
         pkgs = '; '.join(f'{n}: {D["npm"][n]["pkg"]}' for n in grp)
@@ -129,13 +152,14 @@ def chart_npm():
 # ---------------------------------------------------------------- chart 2: weekly commits, small multiples
 def chart_commits():
     items = sorted(D['commits'].items(), key=lambda kv: -sum(v for _, v in kv[1]))
+    items.append(('Baselayer KYA', None))  # no public repository
     cols, pw, ph = 5, 160, 70
     gx, gy = 28, 46
     L, T = 40, 124
     rows = math.ceil(len(items) / cols)
     W = L * 2 + cols * pw + (cols - 1) * gx
     H = T + rows * (ph + gy) + 30
-    ymax = max(v for _, wk in items for _, v in wk)
+    ymax = max(v for _, wk in items if wk for _, v in wk)
     ymax = int(math.ceil(ymax / 10.0) * 10)
     b = [f'<text class="t" x="{L}" y="30">Weekly commits to each protocol\'s main repository</text>',
          f'<text class="sub" x="{L}" y="50">Last 52 weeks to mid-Oct 2026. Same scale in every panel (0 to {ymax}), sorted by total commits.</text>',
@@ -144,9 +168,15 @@ def chart_commits():
         c, r = k % cols, k // cols
         x0 = L + c * (pw + gx)
         y0 = T + r * (ph + gy)
+        if wk is None:
+            b.append(f'<text class="lab" x="{x0}" y="{y0-18}" style="font-weight:700">{esc(n)}</text>'
+                     f'<rect class="nd" x="{x0}" y="{y0}" width="{pw}" height="{ph}" rx="4"/>'
+                     f'<text class="ndt" x="{x0+pw/2}" y="{y0+ph/2-3}" text-anchor="middle">No data</text>'
+                     f'<text class="ndt" x="{x0+pw/2}" y="{y0+ph/2+12}" text-anchor="middle">closed product, no public repo</text>')
+            continue
         tot = sum(v for _, v in wk)
         b.append(f'<text class="lab" x="{x0}" y="{y0-18}" style="font-weight:700">{esc(n)}</text>'
-                 f'<text class="val" x="{x0+pw}" y="{y0-18}" text-anchor="end">{tot:,} commits</text>')
+                 f'<text class="val" x="{x0+pw}" y="{y0-18}" text-anchor="end">{tot:,} commit{"" if tot == 1 else "s"}</text>')
         b.append(f'<line class="grid" x1="{x0}" x2="{x0+pw}" y1="{y0}" y2="{y0}"/>'
                  f'<line class="axis" x1="{x0}" x2="{x0+pw}" y1="{y0+ph}" y2="{y0+ph}"/>')
         if c == 0:
@@ -163,12 +193,13 @@ def chart_commits():
             day = dt.datetime.utcfromtimestamp(ts).date().isoformat()
             b.append(f'<rect class="hit" x="{px(i)-pw/n_w/2:.1f}" y="{y0}" width="{pw/n_w:.1f}" height="{ph}"><title>{esc(n)}: {v} commits, week of {day}</title></rect>')
     return svg(W, H, ''.join(b), 'Weekly commits to each protocol main repository',
-               'Small multiples, one panel per repository, shared scale. ' + '; '.join(f'{n} {sum(v for _, v in wk)} commits' for n, wk in items))
+               'Small multiples, one panel per repository, shared scale. ' + '; '.join(f'{n} {sum(v for _, v in wk)} commits' for n, wk in items if wk) + '; Baselayer KYA has no data (closed product)')
 
 
 # ---------------------------------------------------------------- chart 3: stars snapshot dot plot
 def chart_stars():
     items = sorted(D['repos'].items(), key=lambda kv: -kv[1]['stars'])
+    items.append(('Baselayer KYA', None))  # no public repository
     quiet = {n for n, wk in D['commits'].items() if sum(v for _, v in wk[-13:]) == 0}
     W = 960
     L, R, T = 150, 250, 100
@@ -189,6 +220,11 @@ def chart_stars():
                  f'<text class="ax" x="{x:.1f}" y="{T+len(items)*rh+16}" text-anchor="middle">{fmt(10**k)}</text>')
     for i, (n, r) in enumerate(items):
         y = T + i * rh + rh / 2
+        if r is None:
+            b.append(f'<text class="lab" x="{L-12}" y="{y+4:.1f}" text-anchor="end">{esc(n)}</text>'
+                     f'<rect class="nd" x="{L+8}" y="{y-10:.1f}" width="{pw-16}" height="20" rx="4"/>'
+                     f'<text class="ndt" x="{L+20}" y="{y+4:.1f}">No data: closed commercial product, no public repository</text>')
+            continue
         hollow = n in quiet
         fill = 'var(--surface)' if hollow else 'var(--s1)'
         b.append(f'<text class="lab" x="{L-12}" y="{y+4:.1f}" text-anchor="end">{esc(n)}</text>'
@@ -197,7 +233,7 @@ def chart_stars():
                  f'<text class="val" x="{X(r["stars"])+12:.1f}" y="{y+4:.1f}">{r["stars"]:,}  ·  created {dt.date.fromisoformat(r["created"]).strftime("%b %Y")}</text>')
     b.append(f'<text class="ax" x="{L-110}" y="{H-12}">MPP is the wevm/mppx SDK, L402 is lightninglabs/aperture and cheqd is cheqd/did-resolver. Others are the protocol repository.</text>')
     return svg(W, H, ''.join(b), 'GitHub stars on each protocol main repository',
-               'Dot plot on a log scale. ' + '; '.join(f'{n} {r["stars"]:,}' for n, r in items))
+               'Dot plot on a log scale. ' + '; '.join(f'{n} {r["stars"]:,}' for n, r in items if r) + '; Baselayer KYA has no data (closed product)')
 
 
 if __name__ == '__main__':
