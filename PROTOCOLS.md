@@ -6,7 +6,7 @@ Every protocol that appears in the capability map ([`generate.py`](./generate.py
 
 | Protocol | Steward | What it does | Status | Documentation | Rating basis |
 |---|---|---|---|---|---|
-| A2A | `a2aproject` (Linux Foundation) | Agent Card discovery, messages, tasks, extensions | v1.0.1 (28 May 2026) | [github.com/a2aproject/A2A](https://github.com/a2aproject/A2A) | Spec |
+| A2A | `a2aproject` GitHub organisation | Agent Card discovery, messages, tasks, extensions | v1.0.1 (28 May 2026) | [github.com/a2aproject/A2A](https://github.com/a2aproject/A2A) | Spec |
 | MCP | Anthropic-originated open standard | Tool and data access for agents | Released | [modelcontextprotocol.io](https://modelcontextprotocol.io) | Secondary |
 | KYA-OS | Decentralized Identity Foundation | Entity Card, `proof.v1`, delegation credentials, `cnf` binding | `@kya-os/mcp` 1.16.2 | [github.com/decentralized-identity/kya-os-mcp](https://github.com/decentralized-identity/kya-os-mcp) | Spec |
 | KYAPay | Not stated on the page read | `kya`, `pay` and `kya-pay` JWTs | Not recorded | [kyapay.org](https://kyapay.org/overview/the-agentic-protocol-stack) | Secondary |
@@ -21,7 +21,7 @@ Every protocol that appears in the capability map ([`generate.py`](./generate.py
 | TAP | Visa | Card-network agent payments | Not recorded | Link not recorded | Secondary |
 | x402 | Not recorded | HTTP 402 payment request, stablecoin settlement | Not recorded | [x402.org](https://x402.org) | Secondary |
 | MPP | Not recorded | Session and streaming payments, multiple payment methods | Not recorded | Link not recorded | Secondary |
-| L402 | Lightning Labs | HTTP 402 with Lightning and macaroons | Not recorded | Link not recorded | Secondary |
+| L402 | Not recorded | HTTP 402 with Lightning and macaroons | Not recorded | Link not recorded | Secondary |
 | cheqd | cheqd | `did:cheqd`, DID-Linked Resources, status lists, trust registries | Live network | [docs.cheqd.io](https://docs.cheqd.io) | Spec |
 
 ## Notes
@@ -29,4 +29,5 @@ Every protocol that appears in the capability map ([`generate.py`](./generate.py
 - **PAP and Poppy are the same protocol.** Poppy is the nickname; PAP is the formal name. Meta's Muse agent was the live-demo agent at Sierra Summit (6 Oct 2026). It is not a separate protocol.
 - **x401 proves the human principal, not the agent.** The agent inherits the human's identity. On the map that is why x401 owns owner verification and human-to-agent authority but not agent identity credential.
 - **Revisit when specs are read.** PAP draft 0.1 and the x401 specification at x401.id have not been read. Every PAP and x401 rating should be checked against them.
+- **Unchecked links:** the datatracker, x402.org, modelcontextprotocol.io and docs.cheqd.io links were written from the usual URL patterns and not opened. Check them before relying on them.
 - **Source repo:** the map and its history come from [`cheqd/agent-toolkit`](https://github.com/cheqd/agent-toolkit/tree/main/docs/research/tools/capability-map). Rows marked "not recorded" were not captured in that repo's landscape notes.
