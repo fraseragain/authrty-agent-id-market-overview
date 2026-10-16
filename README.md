@@ -38,7 +38,7 @@ The window size fits the current content. Use a height of 960 instead of 1090 fo
 
 ## Provisional protocols
 
-Protocols in the `PROVISIONAL` set at the top of `generate.py` (currently PAP) render with dashed chips, and a box owned only by provisional protocols gets a dotted purple border. Use it for protocols whose specification is unpublished or rated from secondary sources, and remove the protocol from the set once its specification has been checked.
+Protocols in the `PROVISIONAL` set at the top of `generate.py` (currently none) render with dashed chips, and a box owned only by provisional protocols gets a dotted purple border. Use it for protocols whose specification is unpublished or rated from secondary sources, and remove the protocol from the set once its specification has been checked.
 
 ## Limits
 
