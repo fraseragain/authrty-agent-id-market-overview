@@ -65,6 +65,26 @@ Collected 16 Oct 2026 from the GitHub API and the npm and PyPI download APIs. "C
 - `coinbase/x402` is a fork of `x402-foundation/x402` with 168 stars. The canonical repo is the foundation's.
 - Package-to-repo mappings were checked against npm registry metadata for `web-bot-auth`, `x402`, `mppx`, `@a2a-js/sdk`, `@kya-os/mcp`, `@modelcontextprotocol/sdk`, `@ucp-js/sdk`, `@proof.com/x401-node` and `@cheqd/sdk`. `@x402/core` and `@x402/fetch` are assumed to be x402 SDK packages. `ucp-sdk` and `a2a-sdk` on PyPI were matched by name only.
 
+## Traction charts
+
+Three charts, drawn from the data in the metrics table. They follow the system light or dark setting. Hover a point in a browser for the exact value.
+
+![Weekly npm downloads of each protocol's main SDK, log scale](./traction/npm-downloads.svg)
+
+**Downloads over time.** MCP is two orders of magnitude ahead of everything else and still rising (about 0.8M to 65M a week). A2A's JavaScript SDK went from about 100 to 4.1M a week in 16 months. x402 has grown steadily to 467K a week. MPP's SDK went from 317 downloads in its first week (9 Feb 2026) to 336K and is closing on Web Bot Auth. UCP and KYA-OS are two to three orders of magnitude smaller, and x401's SDK is under 300 a week.
+
+![Weekly commits to each protocol's main repository, small multiples](./traction/commit-activity.svg)
+
+**Development activity.** MCP, x402 and MPP carry most of the commit volume. AP2, ACP and TAP are flat, which matches their last pushes of June, July and October 2025.
+
+![GitHub stars on each protocol's main repository, log scale](./traction/github-stars.svg)
+
+**Stars.** A2A leads, then MCP, x402, UCP and AP2. AP2 and ACP hold thousands of stars with no recent commits, so their attention has outrun their activity. Hollow dots mark repositories with no commits in the last 13 weeks.
+
+**Not shown:** star history over time. GitHub's stargazer endpoints returned nothing in this environment, so stars appear only as a snapshot. SDK downloads exist only for npm packages, so AP2, ACP, TAP, L402 and ANS have no line in the first chart.
+
+Refresh with `python3 traction/fetch.py` (needs `gh` logged in), then `python3 traction/render.py`. The data behind the charts is in [`traction/data.json`](./traction/data.json).
+
 ## Notes
 
 - **PAP and Poppy are the same protocol.** Poppy is the nickname; PAP is the formal name. Meta's Muse agent was the live-demo agent at Sierra Summit (6 Oct 2026). It is not a separate protocol.
