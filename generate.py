@@ -24,8 +24,14 @@ import html
 # protocol -> colour
 COL={'A2A':'#2f7fd1','KYA-OS':'#e0782a','AP2':'#2e9e6b','x402':'#8a56c2','MPP':'#c2398a','L402':'#b8960b','cheqd':'#1b8a8a',
      'ACP':'#6b7a8f','TAP':'#6b7a8f','KYAPay':'#c4572d','Baselayer':'#6b7a8f','MCP':'#2f7fd1',
-     'UCP':'#8c5a2b','PAP':'#4f46e5','ANS':'#0f7fa6','WebBotAuth':'#7a4a2a','x401':'#b3261e'}
-LABEL={'WebBotAuth':'Web Bot Auth','PAP':'PAP (Poppy)'}
+     'UCP':'#8c5a2b','PAP':'#4f46e5','ANS':'#0f7fa6','WebBotAuth':'#7a4a2a','x401':'#b3261e',
+     'ERC8004':'#37474f','VI':'#a0522d','AGNTCY':'#00695c','IDJAG':'#5e35b1','SPT':'#635bff',
+     'VC2':'#5f6b7a','SDJWT':'#5f6b7a','OID4VC':'#5f6b7a','BSL':'#5f6b7a','vLEI':'#5f6b7a','RFC9421':'#5f6b7a','DPoP':'#5f6b7a',
+     'RFC8693':'#5f6b7a','RAR':'#5f6b7a','SCITT':'#5f6b7a','SSF':'#5f6b7a','OTel':'#5f6b7a'}
+LABEL={'WebBotAuth':'Web Bot Auth','PAP':'PAP (Poppy)','ERC8004':'ERC-8004 (draft)','VI':'Verifiable Intent (draft)',
+       'AGNTCY':'AGNTCY','IDJAG':'ID-JAG (IETF draft)','SPT':'Stripe SPT','VC2':'W3C VC 2.0','SDJWT':'SD-JWT / SD-JWT VC',
+       'OID4VC':'OpenID4VCI/VP','BSL':'Bitstring Status List','vLEI':'GLEIF vLEI','RFC9421':'RFC 9421','DPoP':'RFC 9449 DPoP',
+       'RFC8693':'RFC 8693','RAR':'RFC 9396','SCITT':'SCITT (RFC 9943)','SSF':'OpenID SSF/CAEP','OTel':'OTel GenAI (dev)'}
 # Protocols whose ratings are provisional (rated from announcements, not the specification text).
 # None at present. PAP (Poppy) is rated from draft 0.1 (docs/spec, 15 Oct 2026); x401 from draft 0.2.0
 # (github.com/proof/x401, key sections read). Both are drafts and can change incompatibly.
@@ -36,48 +42,56 @@ def cap(name, owners, gap=False): return dict(name=name, owners=owners, gap=gap)
 ROWS=[
  ("Payment", [
    ("Payment authority", [
-     cap("Mandate authorisation",[('AP2','F'),('ACP','P'),('TAP','P'),('UCP','P')]),
-     cap("Spend limits and constraints",[('AP2','F')]),
+     cap("Mandate authorisation",[('AP2','F'),('ACP','P'),('TAP','P'),('UCP','P'),('VI','P'),('SPT','P')]),
+     cap("Spend limits and constraints",[('AP2','F'),('VI','F'),('SPT','P')]),
      cap("Receipts and dispute evidence",[('AP2','F')]),
-     cap("Binding the decision to the payment",[],True)]),
+     cap("Binding the decision to the payment",[('VI','F'),('UCP','P')]),
+     cap("Delegated payment credential",[('SPT','F'),('ACP','P'),('UCP','P')])]),
    ("Payment wire and settlement", [
      cap("HTTP-native payment request",[('x402','F'),('MPP','F'),('L402','F')]),
      cap("Session and streaming payments",[('MPP','F')]),
-     cap("Card-rail payments",[('MPP','P'),('TAP','F'),('ACP','F'),('UCP','P')]),
+     cap("Card-rail payments",[('MPP','P'),('TAP','F'),('ACP','F'),('SPT','F'),('UCP','P')]),
      cap("Stablecoin settlement",[('x402','F'),('MPP','P')]),
-     cap("Lightning settlement",[('L402','F')])]),
+     cap("Lightning settlement",[('L402','F')]),
+     cap("Payment handler negotiation",[('UCP','F'),('ACP','P')])]),
  ]),
  ("Identity and delegation", [
    ("Agent identity", [
-     cap("Agent identity credential",[('KYA-OS','F'),('KYAPay','F'),('Baselayer','F'),('ANS','F'),('PAP','P')]),
-     cap("Holder-of-key binding",[('KYA-OS','F'),('PAP','F'),('AP2','P'),('WebBotAuth','P'),('x401','P')]),
-     cap("Owner and deployer verification",[('Baselayer','F'),('KYAPay','F'),('ANS','P'),('x401','P')])]),
+     cap("Agent identity credential",[('KYA-OS','F'),('KYAPay','F'),('Baselayer','F'),('ANS','F'),('PAP','P'),('AGNTCY','P'),('ERC8004','P')]),
+     cap("Holder-of-key binding",[('KYA-OS','F'),('PAP','F'),('AP2','P'),('WebBotAuth','P'),('x401','P'),('VI','P')]),
+     cap("Owner and deployer verification",[('Baselayer','F'),('KYAPay','F'),('ANS','P'),('x401','P'),('IDJAG','P')])]),
    ("Delegation", [
-     cap("Human-to-agent authority",[('KYA-OS','F'),('PAP','F'),('AP2','P'),('x401','P')]),
+     cap("Human-to-agent authority",[('KYA-OS','F'),('PAP','F'),('AP2','P'),('x401','P'),('VI','P'),('IDJAG','P'),('MCP','P')]),
      cap("Agent-to-agent delegation chain",[('KYA-OS','F')])]),
    ("Request proof", [
-     cap("Per-request proof",[('KYA-OS','F'),('WebBotAuth','F'),('PAP','F'),('x401','P'),('x402','P'),('L402','P')]),
-     cap("Response proof",[('KYA-OS','P')]),
-     cap("Replay protection",[('KYA-OS','F'),('PAP','F'),('x401','P'),('x402','P'),('WebBotAuth','P')]),
-     cap("Signing key directory",[('WebBotAuth','F'),('PAP','P')]),
+     cap("Per-request proof",[('KYA-OS','F'),('WebBotAuth','F'),('PAP','F'),('x401','P'),('x402','P'),('L402','P'),('UCP','P')]),
+     cap("Response proof",[('KYA-OS','P'),('UCP','P')]),
+     cap("Replay protection",[('KYA-OS','F'),('PAP','F'),('x401','P'),('x402','P'),('WebBotAuth','P'),('UCP','P')]),
+     cap("Signing key directory",[('WebBotAuth','F'),('PAP','P'),('UCP','P')]),
      cap("Verifier-defined credential requirement",[('x401','F')])]),
  ]),
  ("Business-facing", [
    ("Access and visibility", [
-     cap("Access tiers (guest, read, write)",[('PAP','F')]),
-     cap("Agent identified to the business",[('PAP','F'),('UCP','P')]),
-     cap("Business-side visibility of agent activity",[('PAP','F')])]),
+     cap("Access tiers (guest, read, write)",[('PAP','F'),('UCP','P'),('IDJAG','P')]),
+     cap("Agent identified to the business",[('PAP','F'),('UCP','P'),('MCP','P')]),
+     cap("Business-side visibility of agent activity",[('PAP','F')]),
+     cap("User account linking (OAuth)",[('UCP','F'),('PAP','F'),('MCP','P')])]),
    ("Commerce session", [
      cap("Business capability discovery",[('UCP','F'),('PAP','F')]),
-     cap("Checkout and order semantics",[('UCP','F'),('ACP','F')])]),
+     cap("Product catalogue search and lookup",[('UCP','F'),('ACP','P')]),
+     cap("Cart management",[('UCP','F'),('ACP','P')]),
+     cap("Fulfilment options and locations",[('UCP','F'),('ACP','P')]),
+     cap("Checkout and order semantics",[('UCP','F'),('ACP','F')]),
+     cap("Order status and signed webhooks",[('UCP','F'),('ACP','P')]),
+     cap("Human handoff to a trusted UI",[('UCP','F'),('ACP','P')])]),
  ]),
  ("Discovery and transport", [
    ("Discovery", [
-     cap("Agent discovery",[('A2A','F'),('KYA-OS','P'),('ANS','P')]),
+     cap("Agent discovery",[('A2A','F'),('KYA-OS','P'),('ANS','P'),('AGNTCY','P'),('ERC8004','P')]),
      cap("Domain-anchored agent naming",[('ANS','F')]),
      cap("Identity assurance tiers",[('ANS','F')]),
      cap("Agent Card signature",[('A2A','P')]),
-     cap("Skill and capability attestation",[],True)]),
+     cap("Skill and capability attestation",[('AGNTCY','P'),('ERC8004','P')],True)]),
    ("Interaction", [
      cap("Messages and tasks",[('A2A','F'),('PAP','P')]),
      cap("Tool and data access",[('MCP','F')]),
@@ -85,13 +99,33 @@ ROWS=[
  ]),
  ("Trust anchor", [
    ("Resolution and linkage", [
-     cap("DID resolution",[('cheqd','F'),('KYA-OS','P')]),
+     cap("DID resolution",[('cheqd','F'),('KYA-OS','P'),('AGNTCY','P')]),
      cap("Reciprocal did:web and did:cheqd linkage",[('cheqd','F')]),
      cap("Versioned policy artefacts",[('cheqd','F')])]),
    ("Status", [
      cap("Credential status and revocation",[('cheqd','F'),('KYA-OS','P'),('ANS','P'),('PAP','P'),('x401','P')]),
-     cap("Trust registry standing",[('cheqd','F')]),
-     cap("Append-only transparency log",[('ANS','F')])]),
+     cap("Trust registry standing",[('cheqd','F'),('ERC8004','P')]),
+     cap("Append-only transparency log",[('ANS','F'),('ERC8004','P')])]),
+   ("Reputation and validation", [
+     cap("Agent reputation and feedback",[('ERC8004','F')]),
+     cap("Third-party validation of agent work",[('ERC8004','F')])]),
+ ]),
+ ("Shared standards", [
+   ("Credentials", [
+     cap("Credential data model",[('VC2','F')]),
+     cap("Selective-disclosure credential format",[('SDJWT','F')]),
+     cap("Credential issuance and presentation",[('OID4VC','F')]),
+     cap("Credential status list",[('BSL','F')]),
+     cap("Legal-entity identity credential",[('vLEI','F')])]),
+   ("Tokens and signatures", [
+     cap("HTTP message signatures",[('RFC9421','F')]),
+     cap("Sender-constrained tokens",[('DPoP','F')]),
+     cap("Token exchange",[('RFC8693','F')]),
+     cap("Structured authorisation requests",[('RAR','F')])]),
+   ("Audit and signalling", [
+     cap("Transparency service for signed statements",[('SCITT','F')]),
+     cap("Security event signalling",[('SSF','F')]),
+     cap("Agent and tool-call telemetry",[('OTel','F')])]),
  ]),
 ]
 def _arg(flag):
@@ -132,14 +166,16 @@ def box(c):
         cls='chip'+(' p' if l=='P' else '')+(' prov' if p in PROVISIONAL else '')
         return f'<span class="{cls}" style="--c:{COL[p]}">{html.escape(LABEL.get(p,p))}{"" if l=="F" else " <span class=h>◐</span>"}</span>'
     chips=''.join(chip(p,l) for p,l in c['owners'])
-    if c['gap']: chips='<span class="chip none">no owner</span>'
+    if c['gap']:  # no full owner: show any partial coverage next to the label
+        chips=chips+'<span class="chip none">no full owner</span>' if c['owners'] else '<span class="chip none">no owner</span>'
     prov=' prov' if c['owners'] and all(p in PROVISIONAL for p,l in c['owners']) else ''
     return f'<div class="cap {k}{prov}"><div class="n">{html.escape(c["name"])}</div><div class="chips">{chips}</div></div>'
 rows=''
 for rname, groups in ROWS:
     g=''.join(f'<div class="grp"><div class="gt">{html.escape(gn)}</div><div class="caps">{"".join(box(c) for c in cs)}</div></div>' for gn,cs in groups)
     rows+=f'<div class="row"><div class="rl">{html.escape(rname)}</div><div class="groups">{g}</div></div>'
-legend=''.join(f'<span class="chip" style="--c:{COL[p]}">{LABEL.get(p,p)}</span>' for p in ['A2A','MCP','KYA-OS','KYAPay','ANS','WebBotAuth','AP2','x402','MPP','L402','x401','PAP','UCP','cheqd'] if p in COL)+'<span class="chip" style="--c:#6b7a8f">ACP / TAP / Baselayer</span>'+''
+legend=''.join(f'<span class="chip" style="--c:{COL[p]}">{LABEL.get(p,p)}</span>' for p in ['A2A','MCP','KYA-OS','KYAPay','ANS','WebBotAuth','AP2','x402','MPP','L402','x401','PAP','UCP','ERC8004','VI','AGNTCY','IDJAG','SPT','cheqd'] if p in COL)+'<span class="chip" style="--c:#6b7a8f">ACP / TAP / Baselayer</span>'+'<span class="chip" style="--c:#5f6b7a">Shared standards row (RFCs, W3C, IETF, OpenID)</span>'+''
+PROV_KEY='<span class="k" style="background:#ebe9fb;border:3px dotted #4f46e5"></span>provisional (dashed chip = provisional protocol)' if PROVISIONAL else ''
 page=f'''<!doctype html><meta charset=utf-8><style>
 body{{margin:0;padding:24px;background:#fff;font-family:Helvetica,Arial,'DejaVu Sans',sans-serif;color:#222;width:1560px}}
 h1{{font-size:20px;margin:0 0 4px}} .sub{{font-size:12px;color:#555;margin-bottom:14px}}
@@ -165,14 +201,14 @@ h1{{font-size:20px;margin:0 0 4px}} .sub{{font-size:12px;color:#555;margin-botto
 .k{{display:inline-block;width:14px;height:14px;border-radius:3px;margin:0 3px 0 10px;vertical-align:middle}}
 </style>
 <h1>{html.escape(TITLE)}</h1>
-<div class="sub">Which protocol owns each capability. Red = two or more full owners (overlap). Amber = one owner plus partial coverage. Dashed = gap. Filled chip = owns, outlined chip with <span class=h>◐</span> = partial. Author's assessment, October 2026; payment-protocol details are from secondary sources. PAP (Personal Agent Protocol, nicknamed Poppy, draft 0.1) and x401 (Proof, draft 0.2.0) are rated from their specification drafts, which can change incompatibly. UCP is rated from Google's developer blog, not its specification.</div>
+<div class="sub">Which protocol owns each capability. Red = two or more full owners (overlap). Amber = one owner plus partial coverage. Dashed = gap. Filled chip = owns, outlined chip with <span class=h>◐</span> = partial. Author's assessment, October 2026. DRAFT EXPANSION for review: UCP re-read from its specification (new catalogue, cart, fulfilment, order and handoff boxes); ERC-8004, Verifiable Intent, AGNTCY, ID-JAG and Stripe SPT added; MCP authorisation folded into the MCP column; a Shared standards row added (not protocols: general RFCs and W3C, IETF, OpenID specifications the stack builds on); payment-protocol details are from secondary sources. PAP (Personal Agent Protocol, nicknamed Poppy, draft 0.1) and x401 (Proof, draft 0.2.0) are rated from their specification drafts, which can change incompatibly. UCP is rated from its specification (release v2026-08-25).</div>
 {rows}
 <div class="leg">{legend}
 <span class="k" style="background:#fde3d0;border:3px solid #d32f2f"></span>overlap (two or more full owners)
 <span class="k" style="background:#fff1d6;border:3px solid #e69500"></span>one owner plus partial coverage
 <span class="k" style="background:#f5dc9c;border:2px solid #444"></span>single owner
 <span class="k" style="background:#eee;border:2px dashed #888"></span>gap (no owner)
-<span class="k" style="background:#ebe9fb;border:3px dotted #4f46e5"></span>provisional (dashed chip = provisional protocol)</div>'''
+{PROV_KEY}</div>'''
 out=sys.argv[1] if len(sys.argv)>1 else 'capability-map.html'
 open(out,'w').write(page)
 print({k:len(v) for k,v in stats.items()})
