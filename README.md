@@ -1,6 +1,6 @@
 # Capability map generator
 
-Generates the capability map in [`../../images/protocol-capability-map.png`](../../images/protocol-capability-map.png), used by [`protocol-stack-2026-10.md`](../../protocol-stack-2026-10.md).
+Generates the capability map in [`images/protocol-capability-map.png`](./images/protocol-capability-map.png). It is also used by [`protocol-stack-2026-10.md`](https://github.com/cheqd/agent-toolkit/blob/main/docs/research/protocol-stack-2026-10.md) in the cheqd agent toolkit repository.
 
 The ratings live in the `ROWS` list in `generate.py`. Edit them, regenerate and re-render. Box colour (overlap, partial overlap, gap) is computed from the ratings.
 
@@ -10,8 +10,8 @@ The same data produces two versions:
 
 | Version | Command | Image |
 |---|---|---|
-| With cheqd | `python3 generate.py out.html` | [`protocol-capability-map.png`](../../images/protocol-capability-map.png) |
-| Without cheqd | `python3 generate.py out.html --no-cheqd` | [`protocol-capability-map-neutral.png`](../../images/protocol-capability-map-neutral.png) |
+| With cheqd | `python3 generate.py out.html` | [`protocol-capability-map.png`](./images/protocol-capability-map.png) |
+| Without cheqd | `python3 generate.py out.html --no-cheqd` | [`protocol-capability-map-neutral.png`](./images/protocol-capability-map-neutral.png) |
 
 `--no-cheqd` removes the cheqd chips, drops the capabilities only cheqd covered, and omits the Trust anchor row. `--without PROTOCOL` and `--skip-row ROW` do the same for other protocols and rows.
 
