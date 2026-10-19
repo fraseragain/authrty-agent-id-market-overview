@@ -14,7 +14,7 @@ REPOS = {'A2A': 'a2aproject/A2A', 'MCP': 'modelcontextprotocol/modelcontextproto
          'ANS': 'agentnameservice/ans', 'x401': 'proof/x401', 'KYA-OS': 'decentralized-identity/kya-os-mcp',
          'PAP': 'personal-agent-protocol/personal-agent-protocol', 'KYAPay': 'skyfire-xyz/kyapay',
          'ERC-8004': 'erc-8004/erc-8004-contracts', 'Verifiable Intent': 'agent-intent/verifiable-intent',
-         'AGNTCY': 'agntcy/oasf', 'ID-JAG': 'oauth-wg/oauth-identity-assertion-authz-grant'}
+         'AGNTCY': 'agntcy/oasf'}
 NPM = {'MCP': '@modelcontextprotocol/sdk', 'A2A': '@a2a-js/sdk', 'x402': 'x402', 'MPP': 'mppx',
        'Web Bot Auth': 'web-bot-auth', 'UCP': '@ucp-js/sdk', 'KYA-OS': '@kya-os/mcp', 'x401': '@proof.com/x401-node'}
 
@@ -54,7 +54,6 @@ OTHERS = {
     'AGNTCY': [('agntcy/dir', OFF), ('agntcy/slim', OFF), ('agntcy/identity', OFF), ('agntcy/app-sdk', OFF),
                ('agntcy/dir-sdk-javascript', OFF), ('agntcy/slim-bindings', OFF)],
     'Verifiable Intent': [('lukasjhan/verifiable-intent', TP)],
-    'ID-JAG': [('hmwildermuth/id-jag', TP)],
 }
 # GitHub repositories tagged with each protocol's topic on 16 Oct 2026. Includes applications that only use the protocol.
 TOPICS = {'MCP': ('model-context-protocol', 37653), 'x402': ('x402', 3827), 'A2A': ('a2a-protocol', 604), 'L402': ('l402', 110),
@@ -93,8 +92,7 @@ PUBLISHER = {'fasta2a': 'Pydantic', 'agentic-commerce-protocol': 'Svix', 'acp-ha
              'mppx': 'wevm, with Tempo', 'pympp': 'Tempo', 'pytempo': 'Tempo', 'vestauth': 'the dotenv author', 'fastmcp': 'Prefect',
              '@skyfire-xyz/skyfire-seller-sdk-node': 'Skyfire'}
 # Protocols where no package was found on npm, PyPI or crates.io, with what was checked.
-NO_PACKAGE = {'ID-JAG': 'IETF draft with a draft repository and one 0-star implementation; no package found on npm, PyPI or crates.io',
-              'AP2': 'The ap2 package on PyPI belongs to an unrelated project; no other package found on npm, PyPI or crates.io',
+NO_PACKAGE = {'AP2': 'The ap2 package on PyPI belongs to an unrelated project; no other package found on npm, PyPI or crates.io',
               'ANS': 'No package found on npm, PyPI or crates.io (Go reference implementation, Swift SDK)'}
 
 

@@ -60,7 +60,6 @@ PROXY = {
     'ANS': 'agentnameservice/ans, a Go reference implementation whose operator is unconfirmed. The IETF draft has no repository.',
     'AGNTCY': 'agntcy/oasf, the schema framework. The directory, SLIM, identity and SDK repositories are added in the commits chart and listed in each box.',
     'ERC-8004': 'erc-8004/erc-8004-contracts, reference contracts. The specification is an EIP, which has no GitHub repository.',
-    'ID-JAG': 'oauth-wg/oauth-identity-assertion-authz-grant, the IETF draft repository, not an implementation.',
     'Web Bot Auth': 'cloudflare/web-bot-auth, Cloudflare\'s implementation. The IETF draft is not charted.',
 }
 
