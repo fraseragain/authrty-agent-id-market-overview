@@ -190,9 +190,9 @@ def chart_npm(notes=True):
     hbox = nc_height(secs)
     H = T + ph + 40 + (hbox + 22 + 28 + 10 + 28 + 14 if notes else 20)
     pw = W - L - R
-    # The window follows the data: one week before the first npm week to one week before the last.
-    d0 = dt.date.fromisoformat(D['npm']['MCP']['weeks'][0][0]) - dt.timedelta(days=7)
-    d1 = dt.date.fromisoformat(D['npm']['MCP']['weeks'][-1][0]) - dt.timedelta(days=7)
+    # The window follows the data: from the first npm week to the last (weeks are labelled by their start date).
+    d0 = dt.date.fromisoformat(D['npm']['MCP']['weeks'][0][0])
+    d1 = dt.date.fromisoformat(D['npm']['MCP']['weeks'][-1][0])
     span = (d1 - d0).days
     lo, hi = 1, 8  # log10 axis: 10 .. 100M
 
