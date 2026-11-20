@@ -15,6 +15,11 @@ _sp = _u.spec_from_file_location('fetch_cfg', os.path.join(os.path.dirname(os.pa
 _fc = _u.module_from_spec(_sp); _sp.loader.exec_module(_fc)
 PACKAGES_CFG = _fc.PACKAGES
 D = json.load(open(os.path.join(HERE, 'data.json')))
+COLLECTED = dt.date.fromisoformat(D['collected'])
+
+
+def long_date(d):
+    return f'{d.day} {d.strftime("%b %Y")}'
 
 SLOTS_L = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#008300', '#6250d6', '#e34948']
 SLOTS_D = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767']
@@ -185,8 +190,9 @@ def chart_npm(notes=True):
     hbox = nc_height(secs)
     H = T + ph + 40 + (hbox + 22 + 28 + 10 + 28 + 14 if notes else 20)
     pw = W - L - R
-    d0 = dt.date(2025, 4, 21)
-    d1 = dt.date(2026, 10, 5)
+    # The window follows the data: one week before the first npm week to one week before the last.
+    d0 = dt.date.fromisoformat(D['npm']['MCP']['weeks'][0][0]) - dt.timedelta(days=7)
+    d1 = dt.date.fromisoformat(D['npm']['MCP']['weeks'][-1][0]) - dt.timedelta(days=7)
     span = (d1 - d0).days
     lo, hi = 1, 8  # log10 axis: 10 .. 100M
 
@@ -198,7 +204,7 @@ def chart_npm(notes=True):
 
     b = []
     b.append(f'<text class="t" x="{L}" y="30">Weekly npm downloads of each protocol\'s main official SDK</text>')
-    b.append(f'<text class="sub" x="{L}" y="50">Log scale, 21 Apr 2025 to 5 Oct 2026. Each line starts at the first week with downloads. Downloads include CI and mirrors.</text>')
+    b.append(f'<text class="sub" x="{L}" y="50">Log scale, {long_date(d0)} to {long_date(d1)}. Each line starts at the first week with downloads. Downloads include CI and mirrors.</text>')
     # legend
     lx = L
     for i, n in enumerate(names):
@@ -212,6 +218,8 @@ def chart_npm(notes=True):
     b.append(f'<line class="axis" x1="{L}" x2="{L+pw}" y1="{T+ph}" y2="{T+ph}"/>')
     for ds in ['2025-07-01', '2025-10-01', '2026-01-01', '2026-04-01', '2026-07-01', '2026-10-01']:
         d = dt.date.fromisoformat(ds)
+        if not d0 <= d <= d1:
+            continue
         x = X(d)
         b.append(f'<line class="axis" x1="{x:.1f}" x2="{x:.1f}" y1="{T+ph}" y2="{T+ph+4}"/>'
                  f'<text class="ax" x="{x:.1f}" y="{T+ph+18}" text-anchor="middle">{d.strftime("%b %Y")}</text>')
@@ -235,7 +243,7 @@ def chart_npm(notes=True):
     if notes:
         ny = T + ph + 40
         b.append(nc_box(L, ny, pw + R - 24, secs))
-        b.append(foot(L, ny + hbox + 22, ['One package per protocol is plotted. The window opens 21 Apr 2025, so earlier history for MCP, x402 and Web Bot Auth is not shown.',
+        b.append(foot(L, ny + hbox + 22, [f'One package per protocol is plotted. The window opens {long_date(d0)}, so earlier history for MCP, x402 and Web Bot Auth is not shown.',
                                            'Each line starts at the first week with downloads.']))
         half = len(names) // 2
         for k, grp in enumerate((names[:half], names[half:])):
@@ -313,7 +321,7 @@ def chart_commits(notes=True):
     ymax = max(max(sr['off'] + (sr['tp'] or [0])) for _, sr in items if sr)
     ymax = int(math.ceil(ymax / 10.0) * 10)
     b = [f'<text class="t" x="{L}" y="30">Weekly commits to each protocol: official and third-party repositories</text>',
-         f'<text class="sub" x="{L}" y="50">Last 52 weeks to mid-Oct 2026. Same scale in every panel (0 to {ymax}), sorted by total commits.</text>',
+         f'<text class="sub" x="{L}" y="50">Last 52 weeks to {long_date(COLLECTED)}. Same scale in every panel (0 to {ymax}), sorted by total commits.</text>',
          f'<text class="sub" x="{L}" y="68">Each line adds commits across its repositories, which are listed below. Dashed shading means no repository existed yet.</text>',
          legend_row(L, 94, [('Official repositories', '--s1'), ('Third-party implementations (hand-picked examples)', '--s2')])]
     for k, (n, sr) in enumerate(items):
@@ -505,7 +513,7 @@ def chart_stars(notes=True):
     def X(v):
         return L + pw * (math.log10(v) - lo) / (hi - lo)
     b = [f'<text class="t" x="{L-110}" y="30">GitHub stars on each protocol\'s main repository</text>',
-         f'<text class="sub" x="{L-110}" y="50">Log scale, 16 Oct 2026. Stars measure attention, not use. Star history over time was not available from the GitHub API here.</text>']
+         f'<text class="sub" x="{L-110}" y="50">Log scale, {long_date(COLLECTED)}. Stars measure attention, not use. Star history over time was not available from the GitHub API here.</text>']
     b.append(f'<circle cx="{L-106}" cy="76" r="5" style="fill:var(--s1);stroke:var(--surface);stroke-width:2"/><text class="val" x="{L-96}" y="80">Commits in the last 13 weeks</text>'
              f'<circle cx="{L+110}" cy="76" r="5" style="fill:var(--surface);stroke:var(--s1);stroke-width:2"/><text class="val" x="{L+120}" y="80">No commits in the last 13 weeks</text>')
     for k in range(1, hi + 1):

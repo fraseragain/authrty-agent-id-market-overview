@@ -55,10 +55,10 @@ OTHERS = {
                ('agntcy/dir-sdk-javascript', OFF), ('agntcy/slim-bindings', OFF)],
     'Verifiable Intent': [('lukasjhan/verifiable-intent', TP)],
 }
-# GitHub repositories tagged with each protocol's topic on 16 Oct 2026. Includes applications that only use the protocol.
-TOPICS = {'MCP': ('model-context-protocol', 37653), 'x402': ('x402', 3827), 'A2A': ('a2a-protocol', 604), 'L402': ('l402', 110),
-          'UCP': ('universal-commerce-protocol', 66), 'Web Bot Auth': ('web-bot-auth', 41), 'ACP': ('agentic-commerce-protocol', 27),
-          'AP2': ('agent-payments-protocol', 19), 'ERC-8004': ('erc-8004', 368), 'AGNTCY': ('agntcy', 8)}
+# GitHub repositories tagged with each protocol's topic on 19 Nov 2026. Includes applications that only use the protocol.
+TOPICS = {'MCP': ('model-context-protocol', 46167), 'x402': ('x402', 4648), 'A2A': ('a2a-protocol', 645), 'L402': ('l402', 136),
+          'UCP': ('universal-commerce-protocol', 69), 'Web Bot Auth': ('web-bot-auth', 50), 'ACP': ('agentic-commerce-protocol', 28),
+          'AP2': ('agent-payments-protocol', 20), 'ERC-8004': ('erc-8004', 415), 'AGNTCY': ('agntcy', 10)}
 # Packages per protocol, group and registry. For each registry and group the package with the most downloads in the last
 # four weeks is charted, so a package and its dependencies are not counted twice.
 PACKAGES = {
