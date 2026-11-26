@@ -1,0 +1,710 @@
+{
+  "_about": "Protocol-by-protocol compatibility, 26 Nov 2026. 'joins': is a combination defined in either spec. 'wild': is the pair seen together (live = generally available product, verified at the vendor's own page on 26 Nov 2026; announced = announced, documented, preview or pilot; code = both in one GitHub package manifest). 'alternatives': same-job pairs. 'keys': algorithms each spec allows for the agent or payer key (used in compatibility.md). Evidence: compatibility-profiles.json, evidence-vendor-stacks.md, evidence-code-cooccurrence.md.",
+  "keys": {
+    "MCP": {
+      "core": null,
+      "optional": [],
+      "basis": "No agent signing key in core; private_key_jwt is a MAY with no algorithm set"
+    },
+    "x401": {
+      "core": null,
+      "optional": [],
+      "basis": "No agent signing key; algorithms delegated to OpenID4VP and the DC API"
+    },
+    "A2A": {
+      "core": "any",
+      "optional": [],
+      "basis": "Agent Card JWS alg unrestricted (ES256, RS256 are examples)"
+    },
+    "WebBotAuth": {
+      "core": "any",
+      "optional": [],
+      "basis": "Any IANA-registered RFC 9421 algorithm; no mandatory-to-implement algorithm; HMAC forbidden"
+    },
+    "TAP": {
+      "core": "any",
+      "optional": [],
+      "basis": "No algorithm mandated; examples Ed25519, sample code also rsa-pss-sha256; keys held by Visa's key service"
+    },
+    "ACP": {
+      "core": "any",
+      "optional": [],
+      "basis": "Request signature algorithm agreed out-of-band (examples Ed25519, ES256)"
+    },
+    "AP2": {
+      "core": "any",
+      "optional": [],
+      "basis": "Agent key is an RFC 7800 cnf JWK, algorithm not restricted (examples P-256)"
+    },
+    "UCP": {
+      "core": [
+        "P-256"
+      ],
+      "optional": [
+        "Ed25519",
+        "P-384"
+      ],
+      "basis": "Verifiers MUST support ES256; ES384 and EdDSA OPTIONAL"
+    },
+    "VI": {
+      "core": [
+        "P-256"
+      ],
+      "optional": [],
+      "basis": "ES256 MUST at every layer; EdDSA deferred"
+    },
+    "PAP": {
+      "core": [
+        "P-256"
+      ],
+      "optional": [],
+      "basis": "Session JWT alg MUST be ES256 (client assertions and delegations ES256 or PS384)"
+    },
+    "KYA-OS": {
+      "core": [
+        "Ed25519"
+      ],
+      "optional": [
+        "P-256"
+      ],
+      "basis": "Ed25519 for all operations in core (did:key is Ed25519); Entity Card per-request proof allows EdDSA or ES256"
+    },
+    "x402": {
+      "core": [
+        "secp256k1",
+        "Ed25519"
+      ],
+      "optional": [
+        "any"
+      ],
+      "basis": "Payer key: EIP-712 on EVM, Ed25519 on Solana and TON; optional HTTP message signatures extension has no algorithm restriction"
+    },
+    "MPP": {
+      "core": [
+        "secp256k1",
+        "P-256",
+        "Ed25519"
+      ],
+      "optional": [],
+      "basis": "Per payment method: EIP-712 (secp256k1), Tempo (secp256k1, P-256, WebAuthn), Solana and NEAR (Ed25519)"
+    },
+    "ERC8004": {
+      "core": [
+        "secp256k1"
+      ],
+      "optional": [
+        "any"
+      ],
+      "basis": "EIP-712 from an Ethereum account; ERC-1271 contract wallets can verify other schemes"
+    }
+  },
+  "joins": [
+    {
+      "a": "KYA-OS",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "KYA-OS is an MCP extension (MUST, _meta keys)",
+      "cite": "KYA-OS SPEC-MCP-EXTENSION.md 2.2"
+    },
+    {
+      "a": "PAP",
+      "b": "WebBotAuth",
+      "level": "defined",
+      "basis": "Operators SHOULD sign with Web Bot Auth",
+      "cite": "PAP spec 5.3",
+      "note": 4
+    },
+    {
+      "a": "PAP",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "Defined API type 'mcp'",
+      "cite": "PAP spec 7"
+    },
+    {
+      "a": "PAP",
+      "b": "UCP",
+      "level": "defined",
+      "basis": "Optional extension 'ucp' v1",
+      "cite": "PAP extensions: ucp"
+    },
+    {
+      "a": "UCP",
+      "b": "AP2",
+      "level": "defined",
+      "basis": "Optional AP2 Mandates extension",
+      "cite": "UCP payment/extensions/ap2-mandates.md",
+      "note": 3
+    },
+    {
+      "a": "UCP",
+      "b": "WebBotAuth",
+      "level": "defined",
+      "basis": "Optional WBA interop, normative when used",
+      "cite": "UCP signatures.md 'WBA Interop'",
+      "note": 5
+    },
+    {
+      "a": "UCP",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "Transport binding",
+      "cite": "UCP shopping/checkout/mcp.md"
+    },
+    {
+      "a": "UCP",
+      "b": "A2A",
+      "level": "defined",
+      "basis": "Transport binding",
+      "cite": "UCP shopping/checkout/a2a.md"
+    },
+    {
+      "a": "x402",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "Transport binding",
+      "cite": "x402 specs/transports-v2/mcp.md",
+      "note": 7
+    },
+    {
+      "a": "x402",
+      "b": "A2A",
+      "level": "defined",
+      "basis": "Transport binding",
+      "cite": "x402 specs/transports-v2/a2a.md"
+    },
+    {
+      "a": "x402",
+      "b": "WebBotAuth",
+      "level": "defined",
+      "basis": "Optional HTTP message signatures extension; Cloudflare example uses tag web-bot-auth",
+      "cite": "x402 extensions/http-message-signatures.md"
+    },
+    {
+      "a": "MPP",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "Optional MCP transport extension",
+      "cite": "MPP extensions/transports/draft-payment-transport-mcp-00"
+    },
+    {
+      "a": "ACP",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "MCP binding",
+      "cite": "ACP docs/mcp-binding.md"
+    },
+    {
+      "a": "ERC8004",
+      "b": "A2A",
+      "level": "defined",
+      "basis": "MAY endpoint to an Agent Card; feedback reuses A2A task fields",
+      "cite": "ERC-8004 registration and feedback file"
+    },
+    {
+      "a": "ERC8004",
+      "b": "MCP",
+      "level": "defined",
+      "basis": "MAY endpoint",
+      "cite": "ERC-8004 registration file"
+    },
+    {
+      "a": "x401",
+      "b": "WebBotAuth",
+      "level": "defined",
+      "basis": "Optional agent-binding option",
+      "cite": "x401 spec.md (agent binding)"
+    },
+    {
+      "a": "TAP",
+      "b": "WebBotAuth",
+      "level": "mentioned",
+      "basis": "'[and aligned with web-bot-auth]', informative",
+      "cite": "Visa TAP developer page, Agent Recognition Signature",
+      "note": 2
+    },
+    {
+      "a": "KYA-OS",
+      "b": "WebBotAuth",
+      "level": "mentioned",
+      "basis": "Informative claim that a stock RFC 9421 verifier can check its sibling signature",
+      "cite": "KYA-OS SPEC-ENTITY-CARD.md 8.5",
+      "note": 6
+    },
+    {
+      "a": "KYA-OS",
+      "b": "A2A",
+      "level": "mentioned",
+      "basis": "Gap analysis only",
+      "cite": "KYA-OS SPEC-ENTITY-CARD.md intro"
+    },
+    {
+      "a": "x401",
+      "b": "x402",
+      "level": "mentioned",
+      "basis": "Example scheme_hint",
+      "cite": "x401 spec.md payment hint"
+    },
+    {
+      "a": "x401",
+      "b": "MCP",
+      "level": "mentioned",
+      "basis": "Mention",
+      "cite": "x401 spec.md"
+    },
+    {
+      "a": "AP2",
+      "b": "A2A",
+      "level": "mentioned",
+      "basis": "Described as an extension for A2A",
+      "cite": "AP2 overview.md"
+    },
+    {
+      "a": "AP2",
+      "b": "MCP",
+      "level": "mentioned",
+      "basis": "Mention",
+      "cite": "AP2 overview.md"
+    },
+    {
+      "a": "AP2",
+      "b": "x402",
+      "level": "mentioned",
+      "basis": "FAQ, a2a-x402 repository",
+      "cite": "AP2 faq.md"
+    },
+    {
+      "a": "AP2",
+      "b": "PAP",
+      "level": "mentioned",
+      "basis": "Proposed in open PAP issue #61; not specified",
+      "cite": "PAP issue #61",
+      "note": 10
+    },
+    {
+      "a": "VI",
+      "b": "UCP",
+      "level": "mentioned",
+      "basis": "VI can be carried in UCP fields; design 'through coordination'",
+      "cite": "VI protocol-landscape/protocols.md"
+    },
+    {
+      "a": "VI",
+      "b": "ACP",
+      "level": "mentioned",
+      "basis": "ACP extension as carrier, informative",
+      "cite": "VI protocol-landscape/protocols.md"
+    },
+    {
+      "a": "VI",
+      "b": "AP2",
+      "level": "mentioned",
+      "basis": "Mention",
+      "cite": "VI spec/design-rationale.md",
+      "note": 8
+    },
+    {
+      "a": "MPP",
+      "b": "TAP",
+      "level": "mentioned",
+      "basis": "Card method 'may include' TAP signature headers",
+      "cite": "MPP methods/card/draft-card-charge-00"
+    },
+    {
+      "a": "MPP",
+      "b": "A2A",
+      "level": "mentioned",
+      "basis": "Comparison",
+      "cite": "MPP extensions/draft-payment-discovery-01"
+    },
+    {
+      "a": "MPP",
+      "b": "x402",
+      "level": "mentioned",
+      "basis": "Comparison",
+      "cite": "MPP extensions/draft-payment-discovery-01"
+    },
+    {
+      "a": "MPP",
+      "b": "ERC8004",
+      "level": "mentioned",
+      "basis": "Comparison",
+      "cite": "MPP extensions/draft-payment-discovery-01"
+    },
+    {
+      "a": "ERC8004",
+      "b": "x402",
+      "level": "mentioned",
+      "basis": "Optional example proofOfPayment field",
+      "cite": "ERC-8004 off-chain feedback file",
+      "note": 9
+    },
+    {
+      "a": "A2A",
+      "b": "MCP",
+      "level": "mentioned",
+      "basis": "'A2A and MCP' guide: complementary",
+      "cite": "A2A spec v1.0.1"
+    },
+    {
+      "a": "PAP",
+      "b": "KYA-OS",
+      "level": "none",
+      "basis": "No spec defines a join",
+      "cite": "compatibility.md",
+      "note": 1
+    },
+    {
+      "a": "UCP",
+      "b": "KYA-OS",
+      "level": "none",
+      "basis": "No spec defines a join",
+      "cite": "compatibility.md",
+      "note": 11
+    }
+  ],
+  "notes": {
+    "1": "PAP and KYA-OS look unlikely to share the agent's delegated key as written. PAP's Session JWT must be ES256, while KYA-OS's core did:key delegate is Ed25519; KYA-OS allows ES256 only for its Entity Card per-request proof. An agent would probably need two keys, linked in a way neither spec currently describes.",
+    "2": "Visa TAP and Web Bot Auth both build on RFC 9421, but a Web Bot Auth verifier following draft-01 is unlikely to accept a TAP signature as is: TAP uses different tags (agent-browser-auth, agent-payer-auth), sends no Signature-Agent, publishes keys through Visa's key service, and adds a nonce and an 8-minute window.",
+    "3": "UCP and AP2 are linked by UCP's optional AP2 Mandates extension, but there appear to be seams: UCP signs a checkout object with a detached JWS where AP2 expects a checkout JWT; UCP has no obvious field for AP2's receipts; and AP2's documents differ on whether Ed25519 may sign the checkout.",
+    "4": "PAP recommends that operators sign with Web Bot Auth, but a valid Web Bot Auth signature does not on its own show that the signer is PAP's client_id: the two key sources are separate and both self-published.",
+    "5": "UCP's documented Web Bot Auth example adds a type parameter to Signature-Agent, which draft-01 says a verifier must ignore. They should still interoperate where Signature-Agent points at a bare JWK Set URL, which UCP allows.",
+    "6": "KYA-OS and Web Bot Auth look technically compatible: both identify keys by the RFC 7638 thumbprint, and Web Bot Auth allows Ed25519. Neither spec describes the join yet.",
+    "7": "x402 describes an MCP transport, but we found nothing that ties the paying wallet to the MCP caller.",
+    "8": "Verifiable Intent and AP2 0.2 cover much the same mandate layer, so in most designs they would be alternatives rather than layers.",
+    "9": "The link between ERC-8004 and x402 appears weak: an optional proofOfPayment transaction hash in the off-chain feedback file, given as an example. The registry does not check it, and we found no mention of ERC-8004 in the x402 repository.",
+    "10": "A PAP and AP2 join has been proposed in an open PAP issue (#61) but not yet specified. The keys look compatible: PAP's delegated key and AP2's cnf key are both P-256.",
+    "11": "UCP verifiers are only required to support ES256 (EdDSA is optional), so a KYA-OS core Ed25519 signature may not be accepted by every conformant UCP verifier."
+  },
+  "wild": [
+    {
+      "a": "UCP",
+      "b": "MCP",
+      "level": "live",
+      "basis": "Shopify Checkout MCP implements UCP checkout; Google's MCP transport is beta (its live checkout uses REST)",
+      "source": "https://shopify.dev/docs/agents/carts-and-checkout ; https://developers.google.com/merchant/ucp/faq"
+    },
+    {
+      "a": "PAP",
+      "b": "UCP",
+      "level": "live",
+      "basis": "Poppy enabled for every Shopify merchant; every Shopify store supports UCP; Shopify co-authored the commerce extension",
+      "source": "https://sierra.ai/blog/releasing-poppy (13 Nov 2026)"
+    },
+    {
+      "a": "x402",
+      "b": "MCP",
+      "level": "live",
+      "basis": "AWS Bedrock AgentCore payments GA: Coinbase Bazaar MCP server of x402 endpoints via AgentCore gateway",
+      "source": "https://aws.amazon.com/about-aws/whats-new/2026/08/bedrock-agentcore-payments-ga/ (18 Aug 2026)"
+    },
+    {
+      "a": "x402",
+      "b": "MPP",
+      "level": "live",
+      "basis": "AWS AgentCore payments GA supports both x402 and MPP",
+      "source": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/payments.html"
+    },
+    {
+      "a": "UCP",
+      "b": "A2A",
+      "level": "announced",
+      "basis": "Specified as a transport by Google and Shopify; no live product found",
+      "source": "https://developers.google.com/merchant/ucp"
+    },
+    {
+      "a": "UCP",
+      "b": "AP2",
+      "level": "announced",
+      "basis": "\"Useful for future scenarios\"; Google live checkout pays with Google Pay, not AP2",
+      "source": "https://developers.google.com/merchant/ucp/faq"
+    },
+    {
+      "a": "PAP",
+      "b": "MCP",
+      "level": "announced",
+      "basis": "Defined API type; no live Poppy-to-MCP deployment named",
+      "source": "https://personalagentprotocol.org/docs/1.0/spec"
+    },
+    {
+      "a": "PAP",
+      "b": "WebBotAuth",
+      "level": "announced",
+      "basis": "SHOULD in spec; Sierra launch post does not mention Web Bot Auth",
+      "source": "https://personalagentprotocol.org/docs/1.0/spec"
+    },
+    {
+      "a": "MPP",
+      "b": "MCP",
+      "level": "announced",
+      "basis": "Cloudflare documents MCP tools using the MPP flow; Stripe guide is experimental",
+      "source": "https://developers.cloudflare.com/agents/agentic-payments/mpp"
+    },
+    {
+      "a": "x402",
+      "b": "ERC8004",
+      "level": "announced",
+      "basis": "Open x402 extension proposal (issue #931); third-party implementations",
+      "source": "https://github.com/x402-foundation/x402/issues/931"
+    },
+    {
+      "a": "ACP",
+      "b": "MCP",
+      "level": "announced",
+      "basis": "Preview: embedded checkout over MCP limited to select marketplaces; ACP only as optional Delegate Payment",
+      "source": "https://developers.openai.com/plugins/build/monetization.md"
+    },
+    {
+      "a": "TAP",
+      "b": "WebBotAuth",
+      "level": "announced",
+      "basis": "Cloudflare: TAP uses Web Bot Auth as its authentication layer; live Billtrust TAP pilot does not mention it",
+      "source": "https://blog.cloudflare.com/secure-agentic-commerce/"
+    },
+    {
+      "a": "KYA-OS",
+      "b": "MCP",
+      "level": "announced",
+      "basis": "Open-source MCP binding and demo; production use unconfirmed",
+      "source": "https://github.com/decentralized-identity/kya-os-mcp"
+    },
+    {
+      "a": "AP2",
+      "b": "A2A",
+      "level": "announced",
+      "basis": "Google: AP2 can be used as an extension of A2A and MCP; repo is samples and demos",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    },
+    {
+      "a": "AP2",
+      "b": "MCP",
+      "level": "announced",
+      "basis": "Same Google announcement",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    },
+    {
+      "a": "AP2",
+      "b": "x402",
+      "level": "announced",
+      "basis": "A2A x402 extension announced with AP2; repo v0.1, schemes experimental",
+      "source": "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol"
+    },
+    {
+      "a": "A2A",
+      "b": "x402",
+      "level": "announced",
+      "basis": "A2A x402 extension: spec and reference library, no deployed service",
+      "source": "https://github.com/google-agentic-commerce/a2a-x402"
+    },
+    {
+      "a": "VI",
+      "b": "AP2",
+      "level": "announced",
+      "basis": "Verifiable Intent draft v0.1 with integration mappings",
+      "source": "https://verifiableintent.dev/"
+    },
+    {
+      "a": "VI",
+      "b": "UCP",
+      "level": "announced",
+      "basis": "Integration mapping in draft v0.1",
+      "source": "https://verifiableintent.dev/"
+    },
+    {
+      "a": "VI",
+      "b": "ACP",
+      "level": "announced",
+      "basis": "Integration mapping in draft v0.1",
+      "source": "https://verifiableintent.dev/"
+    },
+    {
+      "a": "TAP",
+      "b": "MPP",
+      "level": "announced",
+      "basis": "Visa Intelligent Commerce Connect accepts TAP, MPP, ACP and UCP: \"Currently in pilot with select partners\"",
+      "source": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22276.html (8 Apr 2026)"
+    },
+    {
+      "a": "TAP",
+      "b": "ACP",
+      "level": "announced",
+      "basis": "Visa Intelligent Commerce Connect accepts TAP, MPP, ACP and UCP: \"Currently in pilot with select partners\"",
+      "source": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22276.html (8 Apr 2026)"
+    },
+    {
+      "a": "TAP",
+      "b": "UCP",
+      "level": "announced",
+      "basis": "Visa Intelligent Commerce Connect accepts TAP, MPP, ACP and UCP: \"Currently in pilot with select partners\"",
+      "source": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22276.html (8 Apr 2026)"
+    },
+    {
+      "a": "MPP",
+      "b": "ACP",
+      "level": "announced",
+      "basis": "Visa Intelligent Commerce Connect accepts TAP, MPP, ACP and UCP: \"Currently in pilot with select partners\"",
+      "source": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22276.html (8 Apr 2026)"
+    },
+    {
+      "a": "MPP",
+      "b": "UCP",
+      "level": "announced",
+      "basis": "Visa Intelligent Commerce Connect accepts TAP, MPP, ACP and UCP: \"Currently in pilot with select partners\"",
+      "source": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22276.html (8 Apr 2026)"
+    },
+    {
+      "a": "ACP",
+      "b": "UCP",
+      "level": "announced",
+      "basis": "Visa Intelligent Commerce Connect accepts TAP, MPP, ACP and UCP: \"Currently in pilot with select partners\"",
+      "source": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22276.html (8 Apr 2026)"
+    },
+    {
+      "a": "x402",
+      "b": "WebBotAuth",
+      "level": "announced",
+      "basis": "Cloudflare Monetization Gateway (waitlist); not re-verified on 26 Nov",
+      "source": "https://blog.cloudflare.com/monetization-gateway/"
+    },
+    {
+      "a": "MCP",
+      "b": "A2A",
+      "level": "code",
+      "basis": "2984 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "MCP",
+      "b": "ERC8004",
+      "level": "code",
+      "basis": "61 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "MCP",
+      "b": "WebBotAuth",
+      "level": "code",
+      "basis": "35 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "A2A",
+      "b": "ERC8004",
+      "level": "code",
+      "basis": "6 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "A2A",
+      "b": "MPP",
+      "level": "code",
+      "basis": "4 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "A2A",
+      "b": "KYA-OS",
+      "level": "code",
+      "basis": "4 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "UCP",
+      "b": "x402",
+      "level": "code",
+      "basis": "3 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "A2A",
+      "b": "WebBotAuth",
+      "level": "code",
+      "basis": "3 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "x402",
+      "b": "x401",
+      "level": "code",
+      "basis": "2 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "MPP",
+      "b": "ERC8004",
+      "level": "code",
+      "basis": "2 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "x402",
+      "b": "KYA-OS",
+      "level": "code",
+      "basis": "2 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "MPP",
+      "b": "WebBotAuth",
+      "level": "code",
+      "basis": "2 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "UCP",
+      "b": "WebBotAuth",
+      "level": "code",
+      "basis": "1 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "MCP",
+      "b": "x401",
+      "level": "code",
+      "basis": "1 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "A2A",
+      "b": "x401",
+      "level": "code",
+      "basis": "1 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "x402",
+      "b": "TAP",
+      "level": "code",
+      "basis": "1 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    },
+    {
+      "a": "WebBotAuth",
+      "b": "ERC8004",
+      "level": "code",
+      "basis": "1 package manifest file(s) on GitHub list both",
+      "source": "evidence-code-cooccurrence.md"
+    }
+  ],
+  "alternatives": {
+    "basis": "Pairs that do the same job, so one would normally be chosen: two mandate formats, two checkout protocols, two HTTP 402 payment protocols, two RFC 9421 agent-signature profiles.",
+    "pairs": [
+      [
+        "AP2",
+        "VI"
+      ],
+      [
+        "ACP",
+        "UCP"
+      ],
+      [
+        "x402",
+        "MPP"
+      ],
+      [
+        "WebBotAuth",
+        "TAP"
+      ]
+    ]
+  }
+}
