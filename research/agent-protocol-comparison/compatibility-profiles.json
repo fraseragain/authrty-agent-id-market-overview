@@ -1,0 +1,368 @@
+{
+  "_meta": {
+    "generated": "2026-11-26",
+    "citation_convention": "Paths are to local working copies of each source (not committed; see Limitations in README.md). 'not specified' means the cited source is silent. Requirement levels are the spec's own (MUST/SHOULD/MAY) or 'extension' / 'example-only'.",
+    "sources": {
+      "MCP": "cmp/src/mcp-index.mdx, mcp-client-registration.mdx, mcp-ext-oauth-client-credentials.mdx, mcp-ext-enterprise-managed-authorization.mdx, mcp-eaa-spec.mdx (spec revision 2026-07-28 per internal links)",
+      "A2A": "cmp/src/a2a-spec-v1.0.1.md, cmp/src/a2a.proto, cmp/src/a2a-enterprise.md",
+      "x402": "g3/x402/specs (git 866e399, 25 Nov 2026)",
+      "UCP": "cmp3/src/ucp/docs/specification (git c20aa35, 20 Nov 2026)",
+      "MPP": "g3/mpp-specs/specs (git aeaeb83, 24 Nov 2026)",
+      "WebBotAuth": "cmp/src/draft-ietf-webbotauth-httpsig-protocol-01.txt (29 Oct 2026; folds in the former directory draft), cmp/src/draft-vilgalys-webbotauth-signed-agent-metadata-00.txt. cmp/src/dir-03/04/06.txt and draft-ietf-webbotauth-http-message-signatures-directory-05.txt are IETF 404 pages, not drafts.",
+      "KYA-OS": "cmp3/src/kya (git ffe1810, 19 Nov 2026): SPEC.md v1.0.0, SPEC-ENTITY-CARD.md v1.1, SPEC-MCP-EXTENSION.md 1.0.0-draft",
+      "x401": "g4/x401/spec.md v0.2.0",
+      "AP2": "src/AP2/docs/ap2 (git e1ea56d, 29 Apr 2026; v0.2)",
+      "VI": "src/verifiable-intent/spec (git 356c296; v0.1-draft, 2026-02-18)",
+      "TAP": "cmp2/raw/visa-spec.txt (Visa developer 'Specifications - Trusted Agent Protocol' page), g3/trusted-agent-protocol (sample code, git 16d59bd, Oct 2025)",
+      "PAP": "cmp3/live/spec.md (v1.0; identical md5 to cmp/src and cmp2/src copies), cmp3/live/ext-ucp.md",
+      "ACP": "src/agentic-commerce-protocol (git 7fdd78d, 17 Jul 2026): rfcs/*.md, spec/2026-04-17 and spec/unreleased openapi",
+      "ERC8004": "g3/eip8004.txt (ERC-8004 Draft, created 2025-08-13)"
+    }
+  },
+  "protocols": {
+    "MCP": {
+      "signature_mechanisms": [
+        {"artefact": "OAuth 2.1 access token", "envelope": "Bearer token (RFC 6750); format opaque to MCP", "level": "MUST when authorization is used", "cite": "mcp-index.mdx L33, L259-266"},
+        {"artefact": "Client assertion at token endpoint", "envelope": "JWT, private_key_jwt (RFC 7523) with JWKS from Client ID Metadata Document", "level": "MAY", "cite": "mcp-client-registration.mdx L42"},
+        {"artefact": "Client-credentials JWT assertion", "envelope": "JWT bearer assertion (RFC 7523)", "level": "extension (OAuth Client Credentials)", "cite": "mcp-ext-oauth-client-credentials.mdx L39-47"},
+        {"artefact": "ID-JAG identity assertion", "envelope": "JWT signed by enterprise IdP", "level": "extension (Enterprise-Managed Authorization)", "cite": "mcp-eaa-spec.mdx L181; mcp-ext-enterprise-managed-authorization.mdx L137"}
+      ],
+      "algorithms": {
+        "access_token": "not specified",
+        "private_key_jwt": "not specified by MCP",
+        "client_credentials_extension": "example-only: RS256 (mcp-ext-oauth-client-credentials.mdx L324, L391)",
+        "ID-JAG": "not specified by MCP (defers to draft-ietf-oauth-identity-assertion-authz-grant)"
+      },
+      "key_discovery": ["AS discovery via RFC 9728 protected resource metadata and RFC 8414 (mcp-index.mdx L73-77)", "client jwks via CIMD (MAY, mcp-client-registration.mdx L42)", "IdP JWKS for ID-JAG (extension)"],
+      "key_id": "not specified",
+      "agent_identifier": "OAuth client_id: CIMD HTTPS URL (MUST https with path, mcp-client-registration.mdx L39), pre-registered id, or DCR id",
+      "principal_identifier": "not specified (resource owner behind the access token)",
+      "http_signature_tag": null,
+      "agent_signing_key_in_core": false,
+      "documented_joins": [],
+      "uncertain": ["No MCP file references any other protocol in this list (grep for web bot auth/9421/A2A/x402/AP2/UCP/ERC-8004 returned nothing)."]
+    },
+    "A2A": {
+      "signature_mechanisms": [
+        {"artefact": "Agent Card", "envelope": "JWS (RFC 7515) over RFC 8785 JCS-canonicalised card, signatures[] of AgentCardSignature {protected, signature, header}", "level": "MAY sign; clients SHOULD verify when present", "cite": "a2a-spec-v1.0.1.md §8.4 (L2004), §8.4.1-8.4.3, L3343-3344; a2a.proto L456"},
+        {"artefact": "Request authentication", "envelope": "one of securitySchemes: API key, HTTP auth, OAuth2, OpenID Connect, mutual TLS", "level": "MUST authenticate with a declared scheme", "cite": "a2a-spec-v1.0.1.md L423, §4.5.1-4.5.6"}
+      ],
+      "algorithms": {"agent_card_jws": "unrestricted: protected header MUST include alg, 'e.g. ES256, RS256' only (a2a-spec-v1.0.1.md L2068-2070)"},
+      "key_discovery": ["jku (JWKS URL) in protected header, MAY", "or a trusted key store (a2a-spec-v1.0.1.md L2076, L2122, L2133)"],
+      "key_id": "kid string, MUST be in protected header (L2072)",
+      "agent_identifier": "Agent Card URL, /.well-known/agent-card.json (L1978); no formal agent ID scheme",
+      "principal_identifier": "none in payload ('No Identity in Payload', a2a-enterprise.md L36)",
+      "http_signature_tag": null,
+      "documented_joins": [
+        {"protocol": "MCP", "strength": "informative", "cite": "a2a-spec-v1.0.1.md L3608 (A2A and MCP guide)"}
+      ],
+      "uncertain": []
+    },
+    "x402": {
+      "signature_mechanisms": [
+        {"artefact": "PaymentPayload.payload", "envelope": "scheme- and network-specific", "level": "MUST (core)", "cite": "x402-specification-v2.md L202-207"},
+        {"artefact": "exact/EVM authorisation", "envelope": "EIP-712 typed signature over EIP-3009 transferWithAuthorization (default) or Permit2 permitWitnessTransferFrom", "level": "MUST within exact-EVM", "cite": "schemes/exact/scheme_exact_evm.md L12-23, L69-73, L91-97"},
+        {"artefact": "exact/SVM payment", "envelope": "partially signed Solana versioned transaction (client signs, sponsor co-signs as feePayer)", "level": "MUST within exact-SVM", "cite": "schemes/exact/scheme_exact_svm.md L36-45, L96"},
+        {"artefact": "SVM upto/batch-settlement vouchers", "envelope": "Ed25519 voucher signatures verified via Ed25519 precompile", "level": "MUST within those schemes", "cite": "schemes/batch-settlement/scheme_batch_settlement_svm.md L29-35, L404; schemes/upto/scheme_upto_svm.md L288, L665"},
+        {"artefact": "Agent identity on requests", "envelope": "RFC 9421 HTTP message signature", "level": "extension (http-message-signatures)", "cite": "extensions/http-message-signatures.md L1-71"},
+        {"artefact": "Server response", "envelope": "RFC 9421, tag x402-response", "level": "extension", "cite": "extensions/http-message-signatures.md L91"},
+        {"artefact": "Wallet sign-in", "envelope": "CAIP-122 message: EIP-4361 SIWE (eip191/eip1271/eip6492) or Sign-In With Solana", "level": "extension (sign-in-with-x)", "cite": "extensions/sign-in-with-x.md L5, L182-213, L295"},
+        {"artefact": "Signed offer / receipt", "envelope": "format 'eip712' or 'jws' (compact)", "level": "extension (offer-and-receipt)", "cite": "extensions/extension-offer-and-receipt.md L43-61, §3.3"},
+        {"artefact": "Access token", "envelope": "OAuth Bearer or DPoP", "level": "extension (auth-hints)", "cite": "extensions/extension-auth-hints.md L37-43, L177"}
+      ],
+      "algorithms": {
+        "exact_evm": "EIP-712 (ECDSA secp256k1 implied by EOA; the scheme text names EIP-712, not the curve)",
+        "svm": "Ed25519 (named for vouchers; implicit for Solana transactions)",
+        "ton_exact": "Ed25519 MUST verify (schemes/exact/scheme_exact.md L78)",
+        "http_message_signatures_ext": "advertised by server in signatureSchemes; examples ed25519, ecdsa-p256-sha256, rsa-pss-sha512; no MUST (http-message-signatures.md L44, L54)",
+        "siwx": "eip191 for EVM, ed25519 for Solana (sign-in-with-x.md L182)",
+        "offer_receipt_jws": "alg required, e.g. ES256K, EdDSA (extension-offer-and-receipt.md L104)"
+      },
+      "key_discovery": ["payer: on-chain address in payload", "http-message-signatures: registrationUrl; response keys SHOULD be at /.well-known/http-message-signatures-directory (http-message-signatures.md L96)", "offer/receipt: kid DID URL resolved via did:web, DNS TXT _controllers.<domain>, or an external registry (extension-offer-and-receipt.md L105, L244-246)"],
+      "key_id": "wallet address (CAIP-10 style); kid DID URL for offer/receipt JWS; keyid for RFC 9421",
+      "agent_identifier": "payer wallet address; optionally the RFC 9421 signer (extension)",
+      "principal_identifier": "none beyond payer address",
+      "http_signature_tag": "configurable via tags[]; examples web-bot-auth, agent-browser-auth (requests); x402-response (responses)",
+      "non_evm_support": "yes in spec: exact schemes for svm, aptos, algo, canton, cardano, casper, concordium, hedera, keeta, lnbtc, near, starknet, stellar, sui, ton, xrpl; upto svm/xrpl; batch-settlement svm (specs/schemes/)",
+      "documented_joins": [
+        {"protocol": "A2A", "strength": "defined transport binding (optional transport)", "cite": "specs/transports-v2/a2a.md"},
+        {"protocol": "MCP", "strength": "defined transport binding (optional transport), _meta['x402/payment']", "cite": "specs/transports-v2/mcp.md L4-12"},
+        {"protocol": "WebBotAuth", "strength": "optional extension; Cloudflare example network uses ed25519 + tag web-bot-auth", "cite": "extensions/http-message-signatures.md L99, L122-123"}
+      ],
+      "uncertain": ["Whether a given facilitator supports a given non-EVM scheme is deployment-specific; the scheme specs exist."]
+    },
+    "UCP": {
+      "signature_mechanisms": [
+        {"artefact": "REST/MCP requests", "envelope": "RFC 9421 HTTP message signature with Content-Digest", "level": "SHOULD (platforms); API keys, OAuth, mTLS allowed instead", "cite": "signatures.md L879-881, L897-925"},
+        {"artefact": "Webhooks", "envelope": "RFC 9421", "level": "MUST", "cite": "signatures.md L883-884"},
+        {"artefact": "Payment authorisation / checkout completion responses", "envelope": "RFC 9421 (@status)", "level": "RECOMMENDED", "cite": "signatures.md L886-889"},
+        {"artefact": "WBA-shape request signature", "envelope": "RFC 9421 with Signature-Agent and tag web-bot-auth", "level": "optional interop (RECOMMENDED path for WBA integrators)", "cite": "signatures.md §WBA Interop L242-340"},
+        {"artefact": "Checkout merchant_authorization", "envelope": "detached JWS (RFC 7515 App. F) over JCS", "level": "MUST within AP2 Mandates extension", "cite": "payment/extensions/ap2-mandates.md L29, L160-195"},
+        {"artefact": "Checkout / payment mandates", "envelope": "SD-JWT+KB", "level": "MUST within AP2 Mandates extension", "cite": "payment/extensions/ap2-mandates.md L222-223"},
+        {"artefact": "Account linking", "envelope": "OAuth 2.0 tokens", "level": "capability (identity linking)", "cite": "common/identity-linking/index.md L35-49"}
+      ],
+      "algorithms": {
+        "rfc9421": "MUST support verifying ES256; ES384 OPTIONAL; EdDSA OPTIONAL; vocabularies open; alg not in Signature-Input, derived from JWK (signatures.md L95-125)",
+        "ap2_extension": "per AP2 Checkout JWT rule: ECDSA ES256/ES384/ES512; Ed25519 only under AP2's entropy reading (ap2-mandates.md L135-156)"
+      },
+      "key_discovery": ["keys[] in the signer's UCP profile at /.well-known/ucp, resolved from UCP-Agent header (overview/index.md L1430-1446)", "or Signature-Agent with type=jwks_uri/cimd (overview/index.md L1559-1573)"],
+      "key_id": "kid string; for WBA-shape keys kid MUST be the RFC 7638 thumbprint (signatures.md L203-208, L321-325)",
+      "agent_identifier": "platform profile URL in UCP-Agent header (overview/index.md L972)",
+      "principal_identifier": "business-issued OAuth identity via identity linking; no portable user ID",
+      "http_signature_tag": "none of its own (signatures.md L382); web-bot-auth when WBA interop used",
+      "documented_joins": [
+        {"protocol": "WebBotAuth", "strength": "optional interop, normative rules when used", "cite": "signatures.md §WBA Interop"},
+        {"protocol": "AP2", "strength": "optional extension (AP2 Mandates)", "cite": "payment/extensions/ap2-mandates.md"},
+        {"protocol": "MCP", "strength": "defined transport binding", "cite": "overview/index.md L213-218; shopping/checkout/mcp.md"},
+        {"protocol": "A2A", "strength": "defined transport binding", "cite": "overview/index.md L218, L266; shopping/checkout/a2a.md"}
+      ],
+      "uncertain": []
+    },
+    "MPP": {
+      "signature_mechanisms": [
+        {"artefact": "Challenge id binding", "envelope": "HMAC-SHA256 under a server secret (stateless option)", "level": "SHOULD when binding statelessly (server-internal, not verifiable by third parties)", "cite": "core/draft-httpauth-payment-01.md L439-503"},
+        {"artefact": "Credential payload", "envelope": "method-specific proof; methods MUST provide single-use proof semantics", "level": "MUST", "cite": "core/draft-httpauth-payment-01.md L235, L1065"},
+        {"artefact": "Other authentication", "envelope": "any HTTP auth scheme, e.g. Bearer or RFC 9421", "level": "MAY", "cite": "core/draft-httpauth-payment-01.md L237-239"},
+        {"artefact": "MCP carriage", "envelope": "_meta credential / receipt", "level": "extension (MCP transport)", "cite": "extensions/transports/draft-payment-transport-mcp-00.md L75-76"}
+      ],
+      "algorithms": {
+        "evm-charge/session, usdc, tempo-session, hedera-session": "EIP-712 / EIP-3009 (secp256k1 ECDSA; ERC-1271 for contract wallets) (methods/evm/draft-evm-session-00.md; methods/usdc/draft-usdc-charge-00.md)",
+        "tempo": "Tempo account signatures: secp256k1, P256, WebAuthn; AccountKeychain keyAuthorization (methods/tempo/draft-tempo-charge-00.md L143-152)",
+        "solana": "signed Solana transaction (charge); session vouchers Ed25519, or secp256r1/WebAuthn passkey (methods/solana/draft-solana-session-00.md L148-157)",
+        "nearintents-session": "Ed25519",
+        "lightning": "BOLT11 invoice + SHA-256 preimage (no client signature)",
+        "stripe": "Shared Payment Token (bearer-style token, no client signature)",
+        "card": "no client signature; encrypted network token with server RSA key, alg MUST be RSA-OAEP-256 (methods/card/draft-card-charge-00.md L244-315)",
+        "stellar, xrpl": "network-native signed transactions; algorithm not named in the drafts"
+      },
+      "key_discovery": ["source: payer DID, RECOMMENDED (core L680); did:pkh SHOULD in Tempo (methods/tempo/draft-tempo-charge-00.md L484-486)", "on-chain addresses per method", "card: server encryptionJwk or jwksUri"],
+      "key_id": "on-chain address / did:pkh",
+      "agent_identifier": "not specified (payer source DID optional)",
+      "principal_identifier": "not specified",
+      "http_signature_tag": null,
+      "documented_joins": [
+        {"protocol": "MCP", "strength": "optional extension (transport)", "cite": "extensions/transports/draft-payment-transport-mcp-00.md"},
+        {"protocol": "TAP", "strength": "informative ('may include' TAP signature headers)", "cite": "methods/card/draft-card-charge-00.md L53-57, L98-99"},
+        {"protocol": "A2A", "strength": "informative comparison", "cite": "extensions/draft-payment-discovery-01.md L780-785"},
+        {"protocol": "x402", "strength": "informative comparison", "cite": "extensions/draft-payment-discovery-01.md L794-799"},
+        {"protocol": "ERC8004", "strength": "informative comparison", "cite": "extensions/draft-payment-discovery-01.md L810-812"}
+      ],
+      "uncertain": ["Stellar and XRPL drafts do not name a curve; network defaults apply but are not stated."]
+    },
+    "WebBotAuth": {
+      "signature_mechanisms": [
+        {"artefact": "Automated client request", "envelope": "RFC 9421 HTTP message signature; MUST cover @authority or @target-uri; MUST carry Signature-Agent; created and expires MUST", "level": "MUST", "cite": "draft-ietf-webbotauth-httpsig-protocol-01 §5.2, §5.2.1"},
+        {"artefact": "Key directory response", "envelope": "RFC 9421 response signature, tag http-message-signatures-directory, with Content-Digest", "level": "MUST when used as proof", "cite": "draft-01 Appendix B (L1535-1560)"},
+        {"artefact": "Signed-Agent-Metadata", "envelope": "header covered by the web-bot-auth signature", "level": "individual draft", "cite": "draft-vilgalys-webbotauth-signed-agent-metadata-00 L486-540"}
+      ],
+      "algorithms": {
+        "request": "unrestricted: 'Algorithms should be registered with IANA as part of HTTP Message Signatures Algorithm registry' (draft-01 §5.2 L535-536). No mandatory-to-implement algorithm. Shared HMAC MUST NOT be used (§6.4).",
+        "examples": "directory example Ed25519 (L911); test vectors rsa-pss-sha512 (Appendix E.1) and Ed25519 (L1944)"
+      },
+      "key_discovery": ["Signature-Agent URL resolving to a JWKS; well-known /.well-known/http-message-signatures-directory with media type application/http-message-signatures-directory+json (draft-01 §5.5, §5.5.1, §8.1)"],
+      "key_id": "keyid MUST be base64url RFC 7638 JWK SHA-256 thumbprint (RFC 8037 App. A.3 for Ed25519); JWK kid at the well-known URI MUST equal it (draft-01 §5.2 L528-530, L866-869)",
+      "agent_identifier": "resolved Signature-Agent URL; key thumbprint when no URL (draft-01 §4.1, §4.3)",
+      "principal_identifier": "none (human principal out of scope)",
+      "http_signature_tag": "web-bot-auth (MUST, §5.2 L532); directory responses: http-message-signatures-directory",
+      "documented_joins": [],
+      "uncertain": ["Earlier standalone directory drafts are not available locally (dir-*.txt are 404 pages); draft-01 states it folds that draft in (L2262).", "Cloudflare's production verifier algorithm support not confirmed: the cloudflare/web-bot-auth README names only an ed25519.pem test key and makes no statement on supported algorithms."]
+    },
+    "KYA-OS": {
+      "signature_mechanisms": [
+        {"artefact": "Tool response proof (ProofMeta)", "envelope": "JWS compact, detached, kid = DID URL", "level": "MUST (core)", "cite": "SPEC.md §7.2, §7.4"},
+        {"artefact": "Delegation credential (object form)", "envelope": "W3C VC with bespoke JCS + Ed25519 proof labelled Ed25519Signature2020 ('a W3C Data Integrity verifier will not verify it'); verifier MAY accept DataIntegrityProof for same construction", "level": "MUST (core)", "cite": "SPEC.md §6.2 L631-652"},
+        {"artefact": "Delegation credential (header form)", "envelope": "VC-JWT in KYA-OS-Delegation-Credential", "level": "core option", "cite": "SPEC.md L660; §8.1"},
+        {"artefact": "Delegation proof", "envelope": "holder-of-key JWT, EdDSA", "level": "MUST for outbound propagation", "cite": "SPEC.md §8.1, §8.2"},
+        {"artefact": "Card-era delegation hops", "envelope": "W3C Data Integrity DataIntegrityProof, eddsa-jcs-2022", "level": "MUST in §6.10 / Entity Card §10.5 profile", "cite": "SPEC.md L1213-1221; SPEC-ENTITY-CARD.md L853"},
+        {"artefact": "Per-request proof (org.kya-os/proof.v1)", "envelope": "detached JWS over JCS + requestHash", "level": "Entity Card profile", "cite": "SPEC-ENTITY-CARD.md §8.2-8.4"},
+        {"artefact": "httpSig sibling", "envelope": "raw RFC 9421 signature by the same DID key, label kyaos", "level": "MAY", "cite": "SPEC-ENTITY-CARD.md §8.5 L594-609"}
+      ],
+      "algorithms": {
+        "core": "Ed25519/EdDSA 'for all cryptographic operations' (SPEC.md §4.2)",
+        "entity_card_proof": "allow-list of exactly EdDSA and ES256 (SPEC-ENTITY-CARD.md L518, L575-578)",
+        "cimd_projection": "non-Ed25519 DID methods skipped from jwks_uri (SPEC-ENTITY-CARD.md L439)"
+      },
+      "key_discovery": ["did:key (local derivation) and did:web MUST be supported; did:cheqd optional (SPEC.md §4.1, §4.4.1)", "/.well-known endpoint (SPEC.md §10)", "CIMD jwks_uri as projection of DID authentication keys (SPEC-ENTITY-CARD.md §7.2)"],
+      "key_id": "DID URL (kid e.g. did:web:...#key-1); cnf.jkt = RFC 7638 thumbprint (SPEC-ENTITY-CARD.md §8.6)",
+      "agent_identifier": "DID (did:key / did:web); CIMD client_id equals did:web in HTTPS form (SPEC-ENTITY-CARD.md §7.1)",
+      "principal_identifier": "root issuer / Responsible Party DID",
+      "http_signature_tag": "not specified (label kyaos; no tag defined)",
+      "documented_joins": [
+        {"protocol": "MCP", "strength": "MUST (it is an MCP extension, _meta keys)", "cite": "SPEC.md title; SPEC-MCP-EXTENSION.md §2.2"},
+        {"protocol": "WebBotAuth", "strength": "informative compatibility claim (stock RFC 9421 verifier)", "cite": "SPEC-ENTITY-CARD.md §8.5 L609"},
+        {"protocol": "A2A", "strength": "informative (gap analysis)", "cite": "SPEC-ENTITY-CARD.md L26"}
+      ],
+      "uncertain": ["How a core-only verifier treats ES256 Entity Card proofs given §4.2 'all operations' Ed25519."]
+    },
+    "x401": {
+      "signature_mechanisms": [
+        {"artefact": "Proof request", "envelope": "OpenID4VP request over W3C DC API (JAR, protocol openid4vp-v1-signed), DCQL query", "level": "SHOULD signed; unsigned (openid4vp-v1-unsigned) allowed", "cite": "spec.md L44-45, L489-490, L630-632"},
+        {"artefact": "Credential result", "envelope": "whatever OpenID4VP/DCQL format the request asks for (example jwt_vc_json)", "level": "MUST verify per OpenID4VP", "cite": "spec.md L461, L874-883"},
+        {"artefact": "Verification token", "envelope": "Bearer; JWT claim set deployment-specific", "level": "MAY issue", "cite": "spec.md L996-1020, L778-800"},
+        {"artefact": "Agent request binding", "envelope": "Web Bot Auth / RFC 9421, mTLS or DPoP", "level": "optional", "cite": "spec.md §Agent Binding Options L1229-1247"}
+      ],
+      "algorithms": {"all": "not specified; delegated to OpenID4VP/DC API. Verifier SHOULD use algorithms an arbitrary Credential Manager can verify (L680)."},
+      "key_discovery": ["Verifier: x5c chain in request JWS SHOULD, or client_id whose key material is resolvable (e.g. x509_san_dns) (L454, L675)", "issuers: DCQL trusted_authorities (openid_federation, etsi_tl), OpenID4VCI metadata (L47-49, L555)"],
+      "key_id": "not specified by x401",
+      "agent_identifier": "optional Agent Identifier, no registered scheme; examples did:web (L126-127, L955)",
+      "principal_identifier": "credential subject of the presented credential",
+      "http_signature_tag": "not specified (refers to Web Bot Auth)",
+      "documented_joins": [
+        {"protocol": "WebBotAuth", "strength": "optional binding option", "cite": "spec.md L1235-1241"},
+        {"protocol": "x402", "strength": "informative example (payment.scheme_hint)", "cite": "spec.md L567-598"},
+        {"protocol": "MCP", "strength": "informative mention", "cite": "spec.md L641"}
+      ],
+      "uncertain": []
+    },
+    "AP2": {
+      "signature_mechanisms": [
+        {"artefact": "Checkout and payment mandates (open/closed)", "envelope": "SD-JWT (RFC 9901) with Key Binding, Delegate SD-JWT chains", "level": "MUST", "cite": "ap2/specification.md L398; ap2/agent_authorization.md §Mandates using SD-JWT VCs, L455-465"},
+        {"artefact": "Checkout JWT (merchant)", "envelope": "JWT/JWS", "level": "MUST be signed with a non-deterministic scheme", "cite": "ap2/specification.md L154-157"},
+        {"artefact": "Checkout and payment receipts", "envelope": "signed JWT", "level": "MUST return", "cite": "ap2/specification.md L159-161, L316, L332"},
+        {"artefact": "User credential", "envelope": "SD-JWT VC via OpenID4VP (other VDCs could be used)", "level": "described trust model", "cite": "ap2/agent_authorization.md L95, L247"}
+      ],
+      "algorithms": {
+        "checkout_jwt": "specification.md: ECDSA, 'not a deterministic signature (e.g., Ed25519)'; security_and_privacy_considerations.md L145-148: Ed25519 allowed if the checkout carries a salt. Internally inconsistent.",
+        "mandates": "example-only ES256; OpenID4VP example sd-jwt_alg_values and kb-jwt_alg_values ['ES256'] (agent_authorization.md L159-160)",
+        "agent_cnf": "RFC 7800 JWK, algorithm not restricted; examples P-256"
+      },
+      "key_discovery": ["agent key: cnf in open mandate (MUST, specification.md L225; security_and_privacy_considerations.md L34)", "issuer/agent-provider keys: not specified (trusted issuer or trusted agent provider models, agent_authorization.md L50-87, L291)"],
+      "key_id": "not specified",
+      "agent_identifier": "not specified (agent known by cnf key; agent identification 'left to the Commerce Protocol layer', implementation_considerations.md L102-103)",
+      "principal_identifier": "issuer-attested user credential; no user-ID claim defined",
+      "http_signature_tag": null,
+      "documented_joins": [
+        {"protocol": "UCP", "strength": "informative; UCP checkout object referenced for checkout mandate", "cite": "ap2/checkout_mandate.md L32; glossary.md L30; index.md L21"},
+        {"protocol": "A2A", "strength": "informative ('extension for' A2A)", "cite": "overview.md L18-19"},
+        {"protocol": "MCP", "strength": "informative", "cite": "overview.md L18-19"},
+        {"protocol": "x402", "strength": "informative (FAQ, a2a-x402 repo)", "cite": "faq.md L43-55"}
+      ],
+      "uncertain": ["Clone dated 29 Apr 2026 (v0.2); a later AP2 release may exist. AP2 issue #268 (entropy rule) cited by UCP not checked."]
+    },
+    "VI": {
+      "signature_mechanisms": [
+        {"artefact": "L1 credential-provider credential", "envelope": "SD-JWT", "level": "MUST", "cite": "spec/credential-format.md §3"},
+        {"artefact": "L2 user mandate", "envelope": "KB-SD-JWT / KB-SD-JWT+KB", "level": "MUST", "cite": "spec/credential-format.md §4"},
+        {"artefact": "L3a/L3b agent mandates", "envelope": "KB-SD-JWT (autonomous mode)", "level": "MUST in autonomous mode", "cite": "spec/credential-format.md §5"},
+        {"artefact": "checkout_jwt", "envelope": "JWS", "level": "SHOULD (implementation-defined in v0.1)", "cite": "spec/credential-format.md §6.3"}
+      ],
+      "algorithms": {"all_layers": "ES256 MUST (alg MUST be 'ES256'; verifiers MUST verify ES256 at every layer); _sd_alg MUST be sha-256; EdDSA only as a future option (spec/README.md L472-482, L898; credential-format.md L74, L91)"},
+      "key_discovery": ["issuer JWKS endpoint by kid (MUST, credential-format.md L104-105)", "user key in L1 cnf.jwk", "agent key in L2 cnf.jwk", "merchant JWKS SHOULD (checkout_jwt)"],
+      "key_id": "kid string; L3 kid MUST match L2 cnf.jwk.kid (credential-format.md L343, L408)",
+      "agent_identifier": "L2 aud: agent platform URI (credential-format.md L162)",
+      "principal_identifier": "L1 sub: opaque stable ID within the issuer (credential-format.md L83)",
+      "http_signature_tag": null,
+      "documented_joins": [
+        {"protocol": "UCP", "strength": "informative (carry VI in UCP fields; design 'through coordination')", "cite": "protocol-landscape/protocols.md §UCP"},
+        {"protocol": "ACP", "strength": "informative (ACP extension as carrier)", "cite": "protocol-landscape/protocols.md §ACP"},
+        {"protocol": "AP2", "strength": "informative mention", "cite": "spec/design-rationale.md L41"}
+      ],
+      "uncertain": []
+    },
+    "TAP": {
+      "signature_mechanisms": [
+        {"artefact": "Agent recognition signature (browse and pay)", "envelope": "RFC 9421 HTTP message signature with created, expires (≤8 min apart), keyid, alg, nonce, tag", "level": "required for a trusted agent", "cite": "cmp2/raw/visa-spec.txt: 'Agent Recognition Signature' and parameter table"},
+        {"artefact": "Agentic Consumer Recognition Object", "envelope": "signed object in body, same key and nonce as the message signature", "level": "defined", "cite": "visa-spec.txt 'Consumer Recognition'"},
+        {"artefact": "Visa ID Token", "envelope": "JWT/JWS (RFC 7515), OIDC-compatible", "level": "Visa implementation", "cite": "visa-spec.txt 'ID Token'"},
+        {"artefact": "Payment container / Browser IOU", "envelope": "signed object 'in the form identified by the alg field'", "level": "defined", "cite": "visa-spec.txt 'Public Keys Retrieval Service'"}
+      ],
+      "algorithms": {
+        "message_signature": "not restricted; examples alg=\"Ed25519\"; sample code supports ed25519 and rsa-pss-sha256 (g3/trusted-agent-protocol/tap-agent/agent_app.py)",
+        "consumer_object": "example alg PS256",
+        "id_token": "'None is not supported'; 'PS256 is preferred to RS256'",
+        "key_service_jwk": "alg e.g. PS256, ES256"
+      },
+      "key_discovery": ["Visa-hosted well-known Public Keys Retrieval Service: GET /keys?keyID returns a JWK; non-Visa keys per their JWS docs (visa-spec.txt)"],
+      "key_id": "keyid / kid string (examples look like JWK thumbprints but no thumbprint rule is stated)",
+      "agent_identifier": "keyid bound to a Visa-approved agent; no other identifier format",
+      "principal_identifier": "ID Token sub ('locally unique and never reassigned'), hashed email/phone for merchant matching",
+      "http_signature_tag": "agent-browser-auth, agent-payer-auth",
+      "documented_joins": [
+        {"protocol": "WebBotAuth", "strength": "informative ('[and aligned with web-bot-auth]', bracketed)", "cite": "visa-spec.txt 'Agent Recognition Signature'"}
+      ],
+      "uncertain": ["Source is a developer web page with no version number. The repo's sample code is dated Oct 2025.", "Whether Signature-Agent is required: the page names 'signature agent' in the signature base description, but the parameter table lists only created, expires, keyid, alg, nonce, tag."]
+    },
+    "PAP": {
+      "signature_mechanisms": [
+        {"artefact": "Client assertion", "envelope": "JWT private_key_jwt (RFC 7523)", "level": "MUST (token endpoint auth)", "cite": "cmp3/live/spec.md §4.1"},
+        {"artefact": "Delegation (poppy-delegation+jwt)", "envelope": "JWT signed by a jwks_uri key, cnf.jwk names the delegated key", "level": "MUST", "cite": "spec.md §5.2 'Delegated keys' L553-622"},
+        {"artefact": "Session JWT (Poppy-Session header)", "envelope": "JWT poppy-session+jwt, DPoP-like htm/htu/ath", "level": "MUST on requests", "cite": "spec.md §5.2 L499-549"},
+        {"artefact": "Operator signature", "envelope": "RFC 9421 via Web Bot Auth, MUST cover poppy-session and authorization", "level": "SHOULD", "cite": "spec.md §5.3 'Operator signatures' L641-645"},
+        {"artefact": "Access token", "envelope": "Bearer (RFC 6750) or DPoP (RFC 9449); Personal Agents SHOULD support DPoP", "level": "per token_type", "cite": "spec.md §4.5 L405-407"}
+      ],
+      "algorithms": {
+        "session_jwt": "alg MUST be ES256 (§5.2 L537)",
+        "client_assertion": "Companies MUST accept ES256 and PS384 (§4.1)",
+        "delegation": "ES256 or PS384; Companies MUST accept both (§5.2 L584)",
+        "blind_signing": "RSA blind signatures RFC 9474 (SHOULD, §10.7)",
+        "operator_signature": "per Web Bot Auth (unrestricted)"
+      },
+      "key_discovery": ["client_id CIMD document -> jwks_uri on same domain (MUST, §4.1)", "delegated key in delegation cnf.jwk", "operator key via Web Bot Auth Signature-Agent"],
+      "key_id": "delegation kid names a jwks_uri key; Session JWT kid MUST be the RFC 7638 thumbprint of the delegated key (§5.2 L537, L609)",
+      "agent_identifier": "client_id HTTPS URL (CIMD); optional pairwise Agent ID (§4.1, §5.1)",
+      "principal_identifier": "pairwise User ID per Company, opaque, not derived from personal data (§5.1)",
+      "http_signature_tag": "web-bot-auth (by reference to Web Bot Auth)",
+      "documented_joins": [
+        {"protocol": "WebBotAuth", "strength": "SHOULD", "cite": "spec.md §5.3"},
+        {"protocol": "MCP", "strength": "defined API type 'mcp' (MCP 2025-06-18 or later)", "cite": "spec.md §7"},
+        {"protocol": "UCP", "strength": "optional extension 'ucp' v1", "cite": "cmp3/live/ext-ucp.md"}
+      ],
+      "uncertain": []
+    },
+    "ACP": {
+      "signature_mechanisms": [
+        {"artefact": "API requests", "envelope": "Authorization: Bearer", "level": "REQUIRED", "cite": "rfcs/rfc.agentic_checkout.md L63, L324"},
+        {"artefact": "Request integrity", "envelope": "Signature header: base64url detached signature over canonical JSON, plus Timestamp. Not RFC 9421 (no 9421 or Signature-Input in the repo).", "level": "checkout: RECOMMENDED / SHOULD; delegate_payment: header RECOMMENDED but §2.2 says client MUST compute; delegate_authentication: REQUIRED, MUST verify", "cite": "rfc.agentic_checkout.md L38, L69, L325; rfc.delegate_payment.md L38, L53, L275; rfc.delegate_authentication.md L35, L67, L222"},
+        {"artefact": "Order webhooks", "envelope": "Merchant-Signature HMAC-SHA256 over timestamp + '.' + raw_body, shared secret", "level": "MUST", "cite": "spec/2026-04-17/openapi/openapi.agentic_checkout_webhook.yaml L8-11, L37-50"},
+        {"artefact": "Delegated payment", "envelope": "vault token restricted by allowance (no signature)", "level": "MUST implement", "cite": "rfc.delegate_payment.md L7, L64-65"},
+        {"artefact": "3DS2 result", "envelope": "issuer cryptogram, passed through", "level": "delegate_authentication", "cite": "rfc.delegate_authentication.md L162, L176"}
+      ],
+      "algorithms": {"request_signature": "out-of-band; examples Ed25519, ES256 (rfc.delegate_payment.md L31)", "webhook": "HMAC-SHA256"},
+      "key_discovery": ["bilateral / out-of-band"],
+      "key_id": "not specified",
+      "agent_identifier": "bilateral Bearer credential; no identifier format",
+      "principal_identifier": "none (optional buyer contact details in checkout payload)",
+      "http_signature_tag": null,
+      "documented_joins": [
+        {"protocol": "MCP", "strength": "defined binding (docs, maps Signature/Timestamp to meta.signature/meta.timestamp)", "cite": "docs/mcp-binding.md L114-115, L257-261"}
+      ],
+      "uncertain": ["openapi.agentic_checkout.yaml (2026-04-17 and unreleased) L427-430 calls the request 'Signature' header an 'HMAC signature for webhook verification', which contradicts the RFC text (signature with a private key)."]
+    },
+    "ERC8004": {
+      "signature_mechanisms": [
+        {"artefact": "setAgentWallet proof", "envelope": "EIP-712 signature (EOA) or ERC-1271 (contract wallet) from the new wallet", "level": "MUST to change agentWallet", "cite": "eip8004.txt L132-133"},
+        {"artefact": "Registry writes (register, setMetadata, giveFeedback, validation)", "envelope": "Ethereum transactions from owner/operator/client addresses", "level": "inherent", "cite": "eip8004.txt L127-173"},
+        {"artefact": "Off-chain feedback/response files", "envelope": "keccak256 hash commitment (feedbackHash, responseHash), not a signature", "level": "optional", "cite": "eip8004.txt L169, L270"}
+      ],
+      "algorithms": {"all": "EIP-712 / ERC-1271; secp256k1 not named (implied by EIP-155 EOAs)"},
+      "key_discovery": ["on-chain: owner of the ERC-721 token, agentWallet", "agentURI registration file (ipfs/https/data); optional /.well-known/agent-registration.json domain check (L60, L122)"],
+      "key_id": "Ethereum address",
+      "agent_identifier": "agentRegistry {namespace}:{chainId}:{identityRegistry} plus agentId (ERC-721 tokenId) (L52-57)",
+      "principal_identifier": "owner address of the agent NFT",
+      "http_signature_tag": null,
+      "documented_joins": [
+        {"protocol": "A2A", "strength": "MAY (endpoint pointing to an Agent Card; feedback fields reuse A2A skills/contextId/taskId)", "cite": "eip8004.txt L73, L119, L242-246"},
+        {"protocol": "MCP", "strength": "MAY (endpoint)", "cite": "eip8004.txt L78, L119"},
+        {"protocol": "x402", "strength": "informative example (x402Support, proofOfPayment)", "cite": "eip8004.txt L45, L104, L252"}
+      ],
+      "uncertain": ["Text is the EIP page as Draft; the exact revision date is not visible in the local copy."]
+    }
+  },
+  "specific_checks": {
+    "a_x402_non_evm": "Yes. The spec has SVM exact/upto/batch-settlement schemes with Ed25519 vouchers, plus 14 more non-EVM exact schemes. SIWX supports solana with ed25519.",
+    "b_wba_algorithms": "draft-ietf-webbotauth-httpsig-protocol-01 sets no mandatory-to-implement algorithm. Any IANA-registered RFC 9421 algorithm is allowed (§5.2), and HMAC MUST NOT be used (§6.4). Ed25519 appears only in examples and test vectors, alongside rsa-pss-sha512.",
+    "c_mpp_methods": "See MPP.algorithms. Core uses only server-side HMAC-SHA256. Methods use EIP-712/secp256k1, Tempo secp256k1/P256/WebAuthn, Ed25519 (Solana, NEAR), Lightning preimages, Stripe SPT bearer tokens, and card RSA-OAEP-256 encryption.",
+    "d_x401": "Verifier-signed OpenID4VP request (JAR) over the W3C Digital Credentials API with a DCQL query, sent in PROOF-REQUEST/PROOF-RESPONSE/PROOF-RESULT headers. Agent binding and the OAuth token exchange are optional. x401 sets no algorithms.",
+    "e_vi": "ES256 MUST at all layers; _sd_alg sha-256; EdDSA deferred to a future version.",
+    "f_a2a_card": "JWS with JCS. alg MUST be present but is unrestricted (examples ES256, RS256). kid MUST be present; jku is optional.",
+    "g_mcp_agent_key": "No agent signing key in core. The only client key is the optional private_key_jwt (MAY), with JWKS from the CIMD. Extensions add JWT client assertions and IdP-signed ID-JAGs."
+  },
+  "note_vs_spec_disagreements": [
+    {"note": "ov/research/agent-protocol-comparison/scores-group-3.md L25 (TAP A1): 'using Ed25519 or RSA-PSS (PS256)'", "spec": "The TAP spec page sets no algorithm list. Message signature examples use Ed25519, the consumer object example uses PS256, and the ID token says PS256 is preferred to RS256. The sample code uses rsa-pss-sha256 (RFC 9421 name), not PS256. 'Ed25519 or RSA-PSS' describes the sample code, not a spec constraint."},
+    {"note": "stacks-new-combinations.md L65 ('Delegation hops carry a DataIntegrityProof with eddsa-jcs-2022 (10.5 item 3)') and README.md L256 ('KYA-OS Ed25519')", "spec": "Correct for the Entity Card §10.5 profile. Core SPEC.md §6.2 uses a bespoke JCS+Ed25519 proof labelled Ed25519Signature2020, which the spec says a W3C Data Integrity verifier will not verify. Entity Card proofs also allow ES256 (§8.4), so 'KYA-OS = Ed25519 only' is true of core only."},
+    {"note": "chain-stacks.md L157 / stacks-new-combinations.md L157: 'the WBA convention is Ed25519'", "spec": "WBA draft-01 has no Ed25519 requirement. Ed25519 is a deployment convention (UCP signatures.md L99 says the same, non-normatively)."},
+    {"note": "README.md L256 'PAP requires ES256 keys'", "spec": "Only the Session JWT must be ES256. Client assertions and delegations may be ES256 or PS384 (§4.1, §5.2), and the operator signature follows WBA (any algorithm)."},
+    {"note": "Notes treat ACP request Signature as an asymmetric signature with out-of-band algorithm", "spec": "This matches the RFCs, but the 2026-04-17 and unreleased OpenAPI describe the request Signature header as 'HMAC signature for webhook verification', and delegate_payment says both MUST (§2.2) and RECOMMENDED (header list). The spec is internally inconsistent; the notes do not flag it."},
+    {"note": "AP2 'Checkout JWT MUST be ECDSA, not Ed25519' (stacks-new-combinations.md L157)", "spec": "Matches specification.md L154-157, but security_and_privacy_considerations.md L145-148 allows a deterministic algorithm if the checkout carries a salt. UCP ap2-mandates.md L144-156 flags this as an internal inconsistency."}
+  ]
+}

@@ -1,0 +1,1551 @@
+{
+ "_about": "16-criterion bucket rubric scores; chain_scores = 10-link chain rubric for purchases; general_protocols = same chain under the general-actions rubric, plus action classes; stacks = per stack, purchase and general rows on the documented-today basis, with if_joined upper bounds and an as_deployed row where checked. All after independent review, 25 Nov 2026. Rule H (payment-only earns nothing) confined to L4-L8, as the general-actions rubric states; the reviewer's extension of H to L1, L2, L3, L9 and L10 (seven cells) reverted. x402 + ERC-8004 general L10 0->1 (review-common flag: missed when H was confined to L4-L8).",
+ "rubric_scores": {
+  "PAP": {
+   "I1": 1.0,
+   "I2": 1.0,
+   "I3": 0.0,
+   "I4": 0.0,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 1.0,
+   "A4": 1.0,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 0.5,
+   "Z4": 1.0,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.0,
+   "C4": 0.0
+  },
+  "MCP": {
+   "I1": 0.5,
+   "I2": 0.5,
+   "I3": 0.5,
+   "I4": 0.0,
+   "A1": 0.5,
+   "A2": 0.5,
+   "A3": 0.5,
+   "A4": 1.0,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 0.5,
+   "Z4": 1.0,
+   "C1": 0.0,
+   "C2": 0.0,
+   "C3": 0.0,
+   "C4": 0.0
+  },
+  "A2A": {
+   "I1": 0.0,
+   "I2": 1.0,
+   "I3": 0.5,
+   "I4": 0.0,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 0.0,
+   "A4": 0.5,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 0.0,
+   "Z4": 0.5,
+   "C1": 0.5,
+   "C2": 0.0,
+   "C3": 0.0,
+   "C4": 0.0
+  },
+  "WebBotAuth": {
+   "I1": 0.0,
+   "I2": 1.0,
+   "I3": 0.0,
+   "I4": 0.0,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 1.0,
+   "A4": 0.0,
+   "Z1": 0.0,
+   "Z2": 0.0,
+   "Z3": 0.0,
+   "Z4": 0.0,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.0,
+   "C4": 0.0
+  },
+  "AP2": {
+   "I1": 0.5,
+   "I2": 0.5,
+   "I3": 1.0,
+   "I4": 0.5,
+   "A1": 1.0,
+   "A2": 0.5,
+   "A3": 1.0,
+   "A4": 1.0,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 1.0,
+   "Z4": 1.0,
+   "C1": 1.0,
+   "C2": 1.0,
+   "C3": 0.5,
+   "C4": 0
+  },
+  "VI": {
+   "I1": 1.0,
+   "I2": 0.5,
+   "I3": 1.0,
+   "I4": 0.5,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 1.0,
+   "A4": 0.5,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 1.0,
+   "Z4": 1.0,
+   "C1": 1.0,
+   "C2": 1.0,
+   "C3": 0.0,
+   "C4": 0
+  },
+  "UCP": {
+   "I1": 1.0,
+   "I2": 1.0,
+   "I3": 0.5,
+   "I4": 0.5,
+   "A1": 0.5,
+   "A2": 1.0,
+   "A3": 1.0,
+   "A4": 0.5,
+   "Z1": 0.5,
+   "Z2": 0.5,
+   "Z3": 0.5,
+   "Z4": 0.5,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.5,
+   "C4": 0.0
+  },
+  "ACP": {
+   "I1": 1.0,
+   "I2": 0.0,
+   "I3": 0.5,
+   "I4": 0.0,
+   "A1": 0.5,
+   "A2": 0.0,
+   "A3": 1.0,
+   "A4": 1.0,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 0.5,
+   "Z4": 1.0,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.5,
+   "C4": 0.0
+  },
+  "TAP": {
+   "I1": 1.0,
+   "I2": 1.0,
+   "I3": 1.0,
+   "I4": 0.5,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 1.0,
+   "A4": 1.0,
+   "Z1": 0.5,
+   "Z2": 0.5,
+   "Z3": 0.5,
+   "Z4": 0.5,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.0,
+   "C4": 0.0
+  },
+  "x402": {
+   "I1": 0.5,
+   "I2": 0.5,
+   "I3": 0.0,
+   "I4": 0.0,
+   "A1": 1.0,
+   "A2": 0.5,
+   "A3": 1.0,
+   "A4": 0.5,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 0.5,
+   "Z4": 1.0,
+   "C1": 1.0,
+   "C2": 1.0,
+   "C3": 0.0,
+   "C4": 0.5
+  },
+  "MPP": {
+   "I1": 0.5,
+   "I2": 0.0,
+   "I3": 0.0,
+   "I4": 0.0,
+   "A1": 0.5,
+   "A2": 0.5,
+   "A3": 1.0,
+   "A4": 0.0,
+   "Z1": 0.5,
+   "Z2": 0.5,
+   "Z3": 0.5,
+   "Z4": 0.5,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.0,
+   "C4": 0.5
+  },
+  "ERC8004": {
+   "I1": 0.0,
+   "I2": 0.5,
+   "I3": 0.0,
+   "I4": 0.0,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 0.5,
+   "A4": 0.0,
+   "Z1": 0.0,
+   "Z2": 0.0,
+   "Z3": 0.0,
+   "Z4": 0.0,
+   "C1": 0.5,
+   "C2": 1.0,
+   "C3": 0.0,
+   "C4": 1.0
+  },
+  "x401": {
+   "I1": 0.5,
+   "I2": 0.5,
+   "I3": 1.0,
+   "I4": 0.5,
+   "A1": 0.5,
+   "A2": 0.5,
+   "A3": 1.0,
+   "A4": 0.5,
+   "Z1": 0.5,
+   "Z2": 0.5,
+   "Z3": 0.0,
+   "Z4": 0.5,
+   "C1": 0.5,
+   "C2": 0.5,
+   "C3": 0.0,
+   "C4": 0.5
+  },
+  "KYA-OS": {
+   "I1": 1.0,
+   "I2": 1.0,
+   "I3": 0.5,
+   "I4": 0.5,
+   "A1": 1.0,
+   "A2": 1.0,
+   "A3": 1.0,
+   "A4": 1.0,
+   "Z1": 1.0,
+   "Z2": 1.0,
+   "Z3": 1.0,
+   "Z4": 1.0,
+   "C1": 1.0,
+   "C2": 1.0,
+   "C3": 0.0,
+   "C4": 1.0
+  }
+ },
+ "adjustments": [
+  {
+   "protocol": "UCP",
+   "criterion": "A1",
+   "score": 0.5,
+   "reason": "request signing is SHOULD"
+  },
+  {
+   "protocol": "MCP",
+   "criterion": "I2",
+   "score": 0.5,
+   "reason": "CIMD is SHOULD"
+  },
+  {
+   "protocol": "AP2",
+   "criterion": "C4",
+   "score": 0,
+   "reason": "no log, registry or status list"
+  },
+  {
+   "protocol": "VI",
+   "criterion": "C4",
+   "score": 0,
+   "reason": "no log, registry or status list"
+  }
+ ],
+ "chain_scores": {
+  "PAP": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 1,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "MCP": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 0,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "A2A": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 0,
+   "I1p": 0,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "WebBotAuth": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 0,
+   "L4": 0,
+   "L5": 1,
+   "L6": 0,
+   "L7": 0,
+   "L8": 0,
+   "L9": 0,
+   "L10": 0,
+   "I1p": 0,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "AP2": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 1,
+   "L5": 1,
+   "L6": 2,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 2,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0.5
+  },
+  "VI": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 2,
+   "L5": 1,
+   "L6": 2,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0.5
+  },
+  "UCP": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "ACP": {
+   "L1": 1,
+   "L2": 0,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 1,
+   "L9": 0,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0,
+   "A2p": 0
+  },
+  "TAP": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 0,
+   "L5": 1,
+   "L6": 0,
+   "L7": 1,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0.5
+  },
+  "x402": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "MPP": {
+   "L1": 1,
+   "L2": 0,
+   "L3": 1,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0,
+   "A2p": 0.5
+  },
+  "ERC8004": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 1,
+   "L4": 0,
+   "L5": 0,
+   "L6": 0,
+   "L7": 1,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0,
+   "I2p": 0.5,
+   "A2p": 0.5
+  },
+  "x401": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 0,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0
+  },
+  "KYA-OS": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 2,
+   "L5": 1,
+   "L6": 2,
+   "L7": 1,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "I1p": 0.5,
+   "I2p": 0.5,
+   "A2p": 0.5
+  }
+ },
+ "general_protocols": {
+  "PAP": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 1,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "yes",
+    "D": "partial",
+    "E": "partial",
+    "F": "no"
+   }
+  },
+  "MCP": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 1,
+   "L9": 1,
+   "L10": 0,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "partial",
+    "F": "no"
+   }
+  },
+  "A2A": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 1,
+   "L9": 1,
+   "L10": 0,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "partial",
+    "F": "partial"
+   }
+  },
+  "WebBotAuth": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 0,
+   "L4": 0,
+   "L5": 1,
+   "L6": 0,
+   "L7": 0,
+   "L8": 0,
+   "L9": 0,
+   "L10": 0,
+   "classes": {
+    "A": "no",
+    "B": "no",
+    "C": "no",
+    "D": "no",
+    "E": "no",
+    "F": "no"
+   }
+  },
+  "AP2": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 1,
+   "L8": 0,
+   "L9": 1,
+   "L10": 2,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "VI": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "UCP": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "yes",
+    "B": "partial",
+    "C": "yes",
+    "D": "yes",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "ACP": {
+   "L1": 1,
+   "L2": 0,
+   "L3": 0,
+   "L4": 0,
+   "L5": 1,
+   "L6": 0,
+   "L7": 0,
+   "L8": 0,
+   "L9": 0,
+   "L10": 1,
+   "classes": {
+    "A": "no",
+    "B": "no",
+    "C": "no",
+    "D": "yes",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "TAP": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 0,
+   "L5": 1,
+   "L6": 0,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "partial",
+    "B": "no",
+    "C": "no",
+    "D": "no",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "x402": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 0,
+   "L4": 0,
+   "L5": 1,
+   "L6": 0,
+   "L7": 1,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "no",
+    "B": "no",
+    "C": "no",
+    "D": "no",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "MPP": {
+   "L1": 1,
+   "L2": 0,
+   "L3": 1,
+   "L4": 0,
+   "L5": 0,
+   "L6": 0,
+   "L7": 0,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "no",
+    "B": "no",
+    "C": "no",
+    "D": "no",
+    "E": "yes",
+    "F": "no"
+   }
+  },
+  "ERC8004": {
+   "L1": 0,
+   "L2": 1,
+   "L3": 1,
+   "L4": 0,
+   "L5": 0,
+   "L6": 0,
+   "L7": 1,
+   "L8": 0,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "partial",
+    "F": "no"
+   }
+  },
+  "x401": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 0,
+   "L4": 1,
+   "L5": 1,
+   "L6": 1,
+   "L7": 0,
+   "L8": 1,
+   "L9": 1,
+   "L10": 0,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "no",
+    "F": "no"
+   }
+  },
+  "KYA-OS": {
+   "L1": 1,
+   "L2": 1,
+   "L3": 1,
+   "L4": 2,
+   "L5": 1,
+   "L6": 2,
+   "L7": 1,
+   "L8": 1,
+   "L9": 1,
+   "L10": 1,
+   "classes": {
+    "A": "partial",
+    "B": "partial",
+    "C": "partial",
+    "D": "partial",
+    "E": "yes",
+    "F": "yes"
+   }
+  }
+ },
+ "stacks": {
+  "AP2 + UCP (+ Verifiable Intent)": {
+   "members": [
+    "AP2",
+    "UCP",
+    "VI"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "README L10 2->1: UCP carries no AP2 receipt; general = UCP alone because the join is the payment-mandate extension; VI adds nothing"
+  },
+  "PAP + UCP + Web Bot Auth": {
+   "members": [
+    "PAP",
+    "UCP",
+    "WebBotAuth"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "Unchanged; general chain 1 rests on UCP signed order webhooks (L7) and PAP/UCP token revocation (L8)"
+  },
+  "KYA-OS + MCP": {
+   "members": [
+    "KYA-OS",
+    "MCP"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     1,
+     1,
+     2,
+     1,
+     2,
+     1,
+     0,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     1,
+     2,
+     1,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "Join is KYA's draft optional MCP extension; general L8=1 via Responsible Party and delegation revocation"
+  },
+  "x402 + ERC-8004": {
+   "members": [
+    "x402",
+    "ERC8004"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     0,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1,
+     0,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "README L3 1->0: ERC-8004 agentWallet not bound to the x402 payer; general join is a payment hash only"
+  },
+  "Visa TAP + Web Bot Auth": {
+   "members": [
+    "TAP",
+    "WebBotAuth"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1,
+     0,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "Join not defined; TAP alone"
+  },
+  "ACP + Stripe payment tokens": {
+   "members": [
+    "ACP",
+    "Stripe SPT"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     0,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "ACP alone (SPT is vendor docs); general nearly empty because grant, records and remedies are payment-only"
+  },
+  "Web Bot Auth + PAP + KYA-OS": {
+   "members": [
+    "WebBotAuth",
+    "PAP",
+    "KYA-OS"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     2,
+     1,
+     2,
+     1,
+     0,
+     1,
+     1
+    ]
+   },
+   "general": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     2,
+     1,
+     2,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "note": "Only PAP-WBA join documented; no KYA-OS reference in PAP or vice versa; general upper bound reaches chain 1"
+  },
+  "Web Bot Auth + PAP + AP2": {
+   "members": [
+    "WebBotAuth",
+    "PAP",
+    "AP2"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1,
+     1,
+     2
+    ]
+   },
+   "general": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     2
+    ]
+   },
+   "note": "AP2 join only proposed (PAP #61, open issue); general upper bound credits AP2's generic model, needs a non-payment mandate type"
+  },
+  "Web Bot Auth + PAP + KYA-OS + AP2": {
+   "members": [
+    "WebBotAuth",
+    "PAP",
+    "KYA-OS",
+    "AP2"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     2,
+     1,
+     2,
+     1,
+     1,
+     1,
+     2
+    ]
+   },
+   "general": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     2,
+     1,
+     2,
+     1,
+     1,
+     1,
+     2
+    ]
+   },
+   "note": "Only PAP-WBA documented; L10=2 upper bound needs three undefined extensions (KYA digest in AP2 constraint, cnf=PAP key, receipt carriage)"
+  },
+  "PAP + Web Bot Auth": {
+   "members": [
+    "PAP",
+    "WebBotAuth"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "general": {
+    "today": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null
+   },
+   "note": "Documented join (PAP 5.3, SHOULD); Web Bot Auth scores at or below PAP on every link, so the pair equals PAP."
+  },
+  "x402 + MCP": {
+   "members": [
+    "x402",
+    "MCP"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "if_joined": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "note": "Payment rides MCP; no identity join; x402 receipt already rides SettlementResponse.extensions"
+  },
+  "MCP + A2A": {
+   "members": [
+    "MCP",
+    "A2A"
+   ],
+   "purchase": {
+    "today": [
+     0,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     0
+    ],
+    "if_joined": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     0
+    ]
+   },
+   "general": {
+    "today": [
+     0,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "if_joined": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0
+    ]
+   },
+   "note": "No join defined; no payments"
+  },
+  "x402 + MPP + MCP": {
+   "members": [
+    "x402",
+    "MPP",
+    "MCP"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "if_joined": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "note": "Two payment paths in MCP; rows are best single path, never cross-path maxima; no identity join",
+   "variants": {
+    "purchase_today_x402_path": [
+     0,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "purchase_today_floor": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "purchase_if_joined_basis": "best single path: MPP (Tempo method) over its MCP draft transport, plus the proposed MCP-identity join (MCP L1, L2); no cross-path maxima",
+    "general_if_joined_basis": "best single path: x402 over its MCP transport (equals stack 1 general if_joined); MPP path gives at most 9 with L7 0"
+   }
+  },
+  "UCP + AP2 over MCP/A2A": {
+   "members": [
+    "UCP",
+    "AP2",
+    "MCP",
+    "A2A"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1,
+     1,
+     2
+    ]
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     2
+    ]
+   },
+   "note": "Mandates carried; no receipt carrier"
+  },
+  "PAP + Web Bot Auth (+ UCP, MCP)": {
+   "members": [
+    "PAP",
+    "WebBotAuth",
+    "UCP",
+    "MCP"
+   ],
+   "purchase": {
+    "today": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null,
+    "as_deployed": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ]
+   },
+   "general": {
+    "today": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "if_joined": null,
+    "as_deployed": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ]
+   },
+   "note": "Spec chain 1 (equals PAP + UCP + WBA); as deployed (Shopify, poppy 0.4, UCP over MCP, no profile keys, no AP2) chain 0, total 8"
+  }
+ }
+}

@@ -1,0 +1,115 @@
+{
+ "_about": "Adoption figures for the chain charts. Stars on each protocol's main repository, 25 Nov 2026. Downloads: official packages only (published by the protocol's maintainers), npm, PyPI and crates.io, 19 Oct to 15 Nov 2026, checked against npm, pypistats and crates.io on 25 Nov 2026.",
+ "protocols": {
+  "MCP": {
+   "repo": "modelcontextprotocol/modelcontextprotocol",
+   "stars": 9766,
+   "downloads": {
+    "npm:@modelcontextprotocol/sdk": 322683424,
+    "pypi:mcp": 300570298,
+    "crates:rmcp": 12666054
+   },
+   "note": null
+  },
+  "A2A": {
+   "repo": "a2aproject/A2A",
+   "stars": 26687,
+   "downloads": {
+    "npm:@a2a-js/sdk": 22587786,
+    "pypi:a2a-sdk": 12640630,
+    "crates:a2a-lf": 85595
+   },
+   "note": null
+  },
+  "x402": {
+   "repo": "x402-foundation/x402",
+   "stars": 6827,
+   "downloads": {
+    "npm:x402": 2526996,
+    "pypi:x402": 293373,
+    "npm:@x402/core": 2088458
+   },
+   "note": "npm x402 is v1; @x402/core is v2 (separate package, no dependency between them)"
+  },
+  "UCP": {
+   "repo": "Universal-Commerce-Protocol/ucp",
+   "stars": 3523,
+   "downloads": {
+    "npm:@ucp-js/sdk": 67224,
+    "pypi:ucp-sdk": 13106,
+    "crates:ucp-schema": 783
+   },
+   "note": null
+  },
+  "MPP": {
+   "repo": "wevm/mppx",
+   "stars": 196,
+   "downloads": {
+    "npm:mppx": 1563075,
+    "pypi:pympp": 1312034
+   },
+   "note": "Stars on the mppx SDK repo; the spec repo tempoxyz/mpp-specs has 98"
+  },
+  "WebBotAuth": {
+   "repo": "cloudflare/web-bot-auth",
+   "stars": 190,
+   "downloads": {
+    "npm:web-bot-auth": 922393,
+    "crates:web-bot-auth": 83079
+   },
+   "note": "Cloudflare implementation; the spec is an IETF draft. npm http-message-sig excluded: a general HTTP signatures library that web-bot-auth depends on"
+  },
+  "KYA-OS": {
+   "repo": "decentralized-identity/kya-os-mcp",
+   "stars": 33,
+   "downloads": {
+    "npm:@kya-os/mcp": 74869
+   },
+   "note": null
+  },
+  "x401": {
+   "repo": "proof/x401",
+   "stars": 47,
+   "downloads": {
+    "npm:@proof.com/x401-node": 932
+   },
+   "note": null
+  },
+  "AP2": {
+   "repo": "google-agentic-commerce/AP2",
+   "stars": 3286,
+   "downloads": {},
+   "note": "Python SDK installs from GitHub only; PyPI \"ap2\" is an unrelated project (whillhill/ap2)"
+  },
+  "VI": {
+   "repo": "agent-intent/verifiable-intent",
+   "stars": 106,
+   "downloads": {},
+   "note": "Reference code installs from GitHub only; npm \"verifiable-intent\" is a community package (lukasjhan)"
+  },
+  "TAP": {
+   "repo": "visa/trusted-agent-protocol",
+   "stars": 226,
+   "downloads": {},
+   "note": "Repo holds sample apps only; npm \"trusted-agent-protocol\" is unpublished; @inflowpayai/tap-seller is third-party"
+  },
+  "PAP": {
+   "repo": "personal-agent-protocol/personal-agent-protocol",
+   "stars": 179,
+   "downloads": {},
+   "note": "Repo publishes the spec site and an agent kit, no SDK; @datalayer/personal-agent-protocol (npm, PyPI) and @poppykit/* are third-party"
+  },
+  "ACP": {
+   "repo": "agentic-commerce-protocol/agentic-commerce-protocol",
+   "stars": 1611,
+   "downloads": {},
+   "note": "Spec repo only (@agentic-commerce-protocol/specification unpublished); agentic-commerce-protocol on npm and PyPI is by Svix, acp-handler by Vercel"
+  },
+  "ERC8004": {
+   "repo": "erc-8004/erc-8004-contracts",
+   "stars": 242,
+   "downloads": {},
+   "note": "Contracts only, not published as a package; agent0-sdk and @qntx/erc8004 are third-party"
+  }
+ }
+}

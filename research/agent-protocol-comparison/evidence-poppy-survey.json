@@ -1,0 +1,2015 @@
+[
+ {
+  "domain": "allbirds.com",
+  "status": 200,
+  "final_url": "https://allbirds.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Allbirds",
+    "domain": "allbirds.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://allbirds.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "kyliecosmetics.com",
+  "status": 200,
+  "final_url": "https://kyliecosmetics.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Kylie Cosmetics",
+    "domain": "kyliecosmetics.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://kyliecosmetics.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "brooklinen.com",
+  "status": 200,
+  "final_url": "https://brooklinen.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Brooklinen",
+    "domain": "brooklinen.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://brooklinen.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "gymshark.com",
+  "status": 200,
+  "final_url": "https://gymshark.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Gymshark US",
+    "domain": "gymshark.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://gymshark.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "fashionnova.com",
+  "status": 200,
+  "final_url": "https://fashionnova.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Fashion Nova",
+    "domain": "fashionnova.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://fashionnova.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "rarebeauty.com",
+  "status": 200,
+  "final_url": "https://rarebeauty.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Rare Beauty",
+    "domain": "rarebeauty.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://rarebeauty.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "colourpop.com",
+  "status": 200,
+  "final_url": "https://colourpop.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "ColourPop",
+    "domain": "colourpop.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://colourpop.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "tentree.com",
+  "status": 200,
+  "final_url": "https://tentree.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Tentree",
+    "domain": "tentree.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://tentree.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "glossier.com",
+  "status": 200,
+  "final_url": "https://glossier.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Glossier",
+    "domain": "glossier.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://glossier.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "taylorstitch.com",
+  "status": 200,
+  "final_url": "https://taylorstitch.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Taylor Stitch",
+    "domain": "taylorstitch.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://taylorstitch.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "chubbiesshorts.com",
+  "status": 200,
+  "final_url": "https://chubbiesshorts.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Chubbies Shorts",
+    "domain": "chubbiesshorts.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://chubbiesshorts.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "kith.com",
+  "status": 200,
+  "final_url": "https://kith.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Kith",
+    "domain": "kith.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://kith.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "aloyoga.com",
+  "status": 200,
+  "final_url": "https://aloyoga.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Alo Yoga",
+    "domain": "aloyoga.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://aloyoga.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "ssense.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "fentybeauty.com",
+  "status": 200,
+  "final_url": "https://fentybeauty.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Fenty Beauty",
+    "domain": "fentybeauty.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://fentybeauty.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "skims.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "jeffreestarcosmetics.com",
+  "status": 200,
+  "final_url": "https://jeffreestarcosmetics.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Jeffree Star Cosmetics",
+    "domain": "jeffreestarcosmetics.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://jeffreestarcosmetics.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "pura-vida-bracelets.com",
+  "err": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+ },
+ {
+  "domain": "puravidabracelets.com",
+  "status": 200,
+  "final_url": "https://puravidabracelets.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Pura Vida Bracelets",
+    "domain": "puravidabracelets.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://puravidabracelets.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "mvmt.com",
+  "status": 200,
+  "final_url": "https://mvmt.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "MVMT",
+    "domain": "mvmt.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://mvmt.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "bluebottlecoffee.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "death-wish-coffee.com",
+  "err": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+ },
+ {
+  "domain": "deathwishcoffee.com",
+  "status": 200,
+  "final_url": "https://deathwishcoffee.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Death Wish Coffee",
+    "domain": "deathwishcoffee.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://deathwishcoffee.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "huckberry.com",
+  "err": "HTTP Error 403: Forbidden"
+ },
+ {
+  "domain": "untuckit.com",
+  "status": 200,
+  "final_url": "https://untuckit.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "UNTUCKit",
+    "domain": "untuckit.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://untuckit.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "outerknown.com",
+  "status": 200,
+  "final_url": "https://outerknown.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Outerknown",
+    "domain": "outerknown.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://outerknown.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "vuoriclothing.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "cotopaxi.com",
+  "status": 200,
+  "final_url": "https://cotopaxi.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Cotopaxi",
+    "domain": "cotopaxi.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://cotopaxi.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "vitaminshoppe.com",
+  "err": "HTTP Error 403: Forbidden"
+ },
+ {
+  "domain": "steve-madden.com",
+  "status": 200,
+  "final_url": "https://steve-madden.com/.well-known/poppy.json",
+  "ctype": "text/html; charset=utf-8",
+  "server": "cloudflare",
+  "nonjson": "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport"
+ },
+ {
+  "domain": "stevemadden.com",
+  "status": 200,
+  "final_url": "https://stevemadden.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Steve Madden",
+    "domain": "stevemadden.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://stevemadden.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "hellofresh.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "ridge.com",
+  "status": 200,
+  "final_url": "https://ridge.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Ridge",
+    "domain": "ridge.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://ridge.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "allform.com",
+  "status": 200,
+  "final_url": "https://allform.com/",
+  "ctype": "text/html; charset=utf-8",
+  "server": "Vercel",
+  "nonjson": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewp"
+ },
+ {
+  "domain": "thursdayboots.com",
+  "status": 200,
+  "final_url": "https://thursdayboots.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Thursday Boot Company",
+    "domain": "thursdayboots.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://thursdayboots.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "marinelayer.com",
+  "status": 200,
+  "final_url": "https://marinelayer.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Marine Layer",
+    "domain": "marinelayer.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://marinelayer.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "everlane.com",
+  "status": 200,
+  "final_url": "https://everlane.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Everlane",
+    "domain": "everlane.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://everlane.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "bombas.com",
+  "err": "HTTP Error 429: Too Many Requests"
+ },
+ {
+  "domain": "tuftandneedle.com",
+  "status": 200,
+  "final_url": "https://tuftandneedle.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Tuft and Needle",
+    "domain": "tuftandneedle.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://tuftandneedle.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "casper.com",
+  "status": 200,
+  "final_url": "https://casper.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Casper Sleep",
+    "domain": "casper.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://casper.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "parachutehome.com",
+  "status": 200,
+  "final_url": "https://parachutehome.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Parachute Home",
+    "domain": "parachutehome.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://parachutehome.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "ouraring.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "oura.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "peloton.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "solo-stove.com",
+  "status": 200,
+  "final_url": "https://www.solostove.com/",
+  "ctype": "text/html; charset=utf-8",
+  "server": "cloudflare",
+  "nonjson": "<!doctype html><html lang=\"en-US\"><head><meta name=\"charset\" content=\"utf-8\"/><m"
+ },
+ {
+  "domain": "solostove.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "magicspoon.com",
+  "status": 200,
+  "final_url": "https://magicspoon.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Magic Spoon",
+    "domain": "magicspoon.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://magicspoon.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "drinkag1.com",
+  "err": "HTTP Error 429: Too Many Requests"
+ },
+ {
+  "domain": "athleticgreens.com",
+  "err": "HTTP Error 429: Too Many Requests"
+ },
+ {
+  "domain": "hexclad.com",
+  "status": 200,
+  "final_url": "https://hexclad.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "HexClad Cookware",
+    "domain": "hexclad.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://hexclad.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "fellowproducts.com",
+  "status": 200,
+  "final_url": "https://fellowproducts.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Fellow",
+    "domain": "fellowproducts.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://fellowproducts.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "stanley1913.com",
+  "status": 200,
+  "final_url": "https://stanley1913.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Stanley 1913",
+    "domain": "stanley1913.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://stanley1913.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "yeti.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "rothys.com",
+  "status": 200,
+  "final_url": "https://rothys.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Rothy's",
+    "domain": "rothys.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://rothys.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "warbyparker.com",
+  "status": 200,
+  "final_url": "https://www.warbyparker.com/.well-known/poppy.json",
+  "ctype": "text/html; charset=utf-8",
+  "server": "cloudflare",
+  "nonjson": "<!DOCTYPE html><html data-dpl-id=\"dpl_8f193Az8NVWfJNDvHTdPeFnUvkjd\" id=\"__next_e"
+ },
+ {
+  "domain": "harrys.com",
+  "status": 200,
+  "final_url": "https://harrys.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Harry's",
+    "domain": "harrys.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://harrys.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "hims.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "cettire.com",
+  "err": "HTTP Error 403: Forbidden"
+ },
+ {
+  "domain": "lulus.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "revolve.com",
+  "status": 200,
+  "final_url": "https://www.revolve.com/.well-known/poppy.json",
+  "ctype": "text/html;charset=UTF-8",
+  "server": null,
+  "nonjson": "<!DOCTYPE html>\n<html  lang=\"en\"  data-ip-country='GB' >\n<head>\n    <meta charse"
+ },
+ {
+  "domain": "bellroy.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "nomadgoods.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "peakdesign.com",
+  "status": 200,
+  "final_url": "https://peakdesign.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Peak Design",
+    "domain": "peakdesign.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://peakdesign.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "ugmonk.com",
+  "status": 200,
+  "final_url": "https://ugmonk.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Ugmonk",
+    "domain": "ugmonk.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://ugmonk.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "brandless.com",
+  "err": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+ },
+ {
+  "domain": "tiny.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "mizzenandmain.com",
+  "err": "HTTP Error 429: Too Many Requests"
+ },
+ {
+  "domain": "cuyana.com",
+  "status": 200,
+  "final_url": "https://cuyana.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Cuyana",
+    "domain": "cuyana.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://cuyana.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "reformation.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "ilia.com",
+  "err": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issue"
+ },
+ {
+  "domain": "kosas.com",
+  "status": 200,
+  "final_url": "https://kosas.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Kosas Cosmetics",
+    "domain": "kosas.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://kosas.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "summerfridays.com",
+  "status": 200,
+  "final_url": "https://summerfridays.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Summer Fridays",
+    "domain": "summerfridays.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://summerfridays.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "tula.com",
+  "status": 200,
+  "final_url": "https://tula.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "TULA",
+    "domain": "tula.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://tula.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "hero-cosmetics.com",
+  "err": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+ },
+ {
+  "domain": "herocosmetics.com",
+  "status": 200,
+  "final_url": "https://herocosmetics.us/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Hero Cosmetics",
+    "domain": "herocosmetics.us"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://herocosmetics.us/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "puffy.com",
+  "status": 200,
+  "final_url": "https://puffy.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "Vercel",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Puffy Mattress",
+    "domain": "checkout.puffy.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://checkout.puffy.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "layla-sleep.com",
+  "err": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+ },
+ {
+  "domain": "ruffwear.com",
+  "status": 200,
+  "final_url": "https://ruffwear.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Ruffwear",
+    "domain": "ruffwear.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://ruffwear.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "chewy.com",
+  "err": "HTTP Error 404: Not Found"
+ },
+ {
+  "domain": "wildone.com",
+  "status": 200,
+  "final_url": "https://wildone.com/.well-known/poppy.json",
+  "ctype": "application/json; charset=utf-8",
+  "server": "cloudflare",
+  "json": {
+   "protocol_version": "0.4",
+   "organization": {
+    "name": "Wild One",
+    "domain": "wildone.com"
+   },
+   "auth": {
+    "scopes": {
+     "dev.ucp.shopping.checkout:manage": "Lets the agent prepare checkouts as the signed-in customer; the buyer completes the purchase. Usually not required to purchase: most stores allow guest checkout. If checkout returns customer_account_required, sign the buyer in or have them create an account. Otherwise, sign in only if the buyer already has an account with this store; existing customers may get discounts and other promotions."
+    },
+    "scope_hints": {
+     "dev.ucp.shopping.checkout:manage": {
+      "changes": "irreversible",
+      "personal_data": true
+     }
+    }
+   },
+   "agent": {
+    "protocols": [
+     {
+      "type": "ucp",
+      "endpoint": "https://wildone.com/.well-known/ucp"
+     }
+    ]
+   },
+   "web": {},
+   "extensions": {
+    "ucp": [
+     {
+      "version": "1"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "domain": "thefarmersdog.com",
+  "status": 200,
+  "final_url": "https://www.thefarmersdog.com/.well-known/poppy.json",
+  "ctype": "text/html; charset=utf-8",
+  "server": "cloudflare",
+  "nonjson": "<!DOCTYPE html><html data-testid=\"html\" lang=\"en\" data-tfd-theme=\"default\"><head"
+ }
+]
