@@ -15,7 +15,8 @@ REPOS = {'A2A': 'a2aproject/A2A', 'MCP': 'modelcontextprotocol/modelcontextproto
          'PAP': 'personal-agent-protocol/personal-agent-protocol', 'KYAPay': 'skyfire-xyz/kyapay',
          'ERC-8004': 'erc-8004/erc-8004-contracts', 'Verifiable Intent': 'agent-intent/verifiable-intent',
          'AGNTCY': 'agntcy/oasf'}
-NPM = {'MCP': '@modelcontextprotocol/sdk', 'A2A': '@a2a-js/sdk', 'x402': 'x402', 'MPP': 'mppx',
+# A name joined with '+' is several independent packages, summed (x402 v1 and v2 are separate packages).
+NPM = {'MCP': '@modelcontextprotocol/sdk', 'A2A': '@a2a-js/sdk', 'x402': 'x402+@x402/core', 'MPP': 'mppx',
        'Web Bot Auth': 'web-bot-auth', 'UCP': '@ucp-js/sdk', 'KYA-OS': '@kya-os/mcp', 'x401': '@proof.com/x401-node'}
 
 
@@ -60,17 +61,20 @@ TOPICS = {'MCP': ('model-context-protocol', 46167), 'x402': ('x402', 4648), 'A2A
           'UCP': ('universal-commerce-protocol', 69), 'Web Bot Auth': ('web-bot-auth', 50), 'ACP': ('agentic-commerce-protocol', 28),
           'AP2': ('agent-payments-protocol', 20), 'ERC-8004': ('erc-8004', 415), 'AGNTCY': ('agntcy', 10)}
 # Packages per protocol, group and registry. For each registry and group the package with the most downloads in the last
-# four weeks is charted, so a package and its dependencies are not counted twice.
+# four weeks is charted, so a package and its dependencies are not counted twice. A name joined with '+' is a set of
+# independent packages that are summed: x402 v1 (`x402`) and v2 (`@x402/core`, which the other @x402 packages depend on)
+# are separate packages with no dependency between them. For Web Bot Auth only `web-bot-auth` is counted:
+# `http-message-sig` and `jsonwebkey-thumbprint` are general-purpose libraries it depends on, also used outside Web Bot Auth.
 PACKAGES = {
     'A2A': {OFF: {'npm': ['@a2a-js/sdk'], 'pypi': ['a2a-sdk'], 'crates': ['a2a-lf', 'a2a-pb']},
             TP: {'pypi': ['fasta2a'], 'crates': ['ra2a']}},
     'MCP': {OFF: {'npm': ['@modelcontextprotocol/sdk'], 'pypi': ['mcp'], 'crates': ['rmcp']},
             TP: {'pypi': ['fastmcp'], 'npm': ['mcp-use']}},
-    'x402': {OFF: {'npm': ['x402', '@x402/core', '@x402/extensions', '@x402/fetch', '@x402/mcp'], 'pypi': ['x402']},
+    'x402': {OFF: {'npm': ['x402+@x402/core', '@x402/extensions', '@x402/fetch', '@x402/mcp'], 'pypi': ['x402']},
              TP: {'crates': ['x402-types', 'x402-chain-eip155']}},
     'UCP': {OFF: {'npm': ['@ucp-js/sdk'], 'pypi': ['ucp-sdk'], 'crates': ['ucp-schema']}, TP: {'npm': ['@shopify/ucp-cli']}},
     'MPP': {OFF: {'npm': ['mppx'], 'pypi': ['pympp', 'pytempo']}, TP: {}},
-    'Web Bot Auth': {OFF: {'npm': ['web-bot-auth', 'http-message-sig', 'jsonwebkey-thumbprint'], 'crates': ['web-bot-auth']},
+    'Web Bot Auth': {OFF: {'npm': ['web-bot-auth'], 'crates': ['web-bot-auth']},
                      TP: {'npm': ['vestauth', 'samesame'], 'pypi': ['regent-httpsig']}},
     'KYA-OS': {OFF: {'npm': ['@kya-os/mcp', '@kya-os/mcp-i']}, TP: {}},
     'x401': {OFF: {'npm': ['@proof.com/x401-node']}, TP: {'npm': ['@solidus-network/x401']}},
@@ -176,6 +180,15 @@ def _daily_once(registry, name):
 
 
 def _daily(registry, name):
+    if '+' in name:  # independent packages, summed
+        parts = [_daily(registry, n) for n in name.split('+')]
+        if not all(parts):
+            return None
+        out = {}
+        for days in parts:
+            for k, v in days.items():
+                out[k] = out.get(k, 0) + v
+        return out
     for attempt in range(4):  # the registries rate-limit and fail intermittently
         days = _daily_once(registry, name)
         if days:
@@ -214,8 +227,11 @@ def npm():
     start = end - dt.timedelta(days=540)
     out = {}
     for n, p in NPM.items():
-        u = f"https://api.npmjs.org/downloads/range/{start}:{end}/{p.replace('/', '%2F')}"
-        days = {x['day']: x['downloads'] for x in json.load(urllib.request.urlopen(u, timeout=30))['downloads']}
+        days = {}
+        for part in p.split('+'):  # independent packages, summed
+            u = f"https://api.npmjs.org/downloads/range/{start}:{end}/{part.replace('/', '%2F')}"
+            for x in json.load(urllib.request.urlopen(u, timeout=30))['downloads']:
+                days[x['day']] = days.get(x['day'], 0) + x['downloads']
         cur = start + dt.timedelta(days=(7 - start.weekday()) % 7)  # first Monday
         weeks = []
         while cur + dt.timedelta(days=6) <= end:  # complete weeks only
