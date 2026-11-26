@@ -244,5 +244,5 @@ sub2 = (f'The {nrows} of 91 protocol pairs with any evidence, strongest first. R
 open(os.path.join(OUT, 'compat-list.html'), 'w').write(page('Agent protocol pairs, ranked by evidence', sub2, table + notes_block(), W2, SRC))
 sizes['compat-list'] = [W2, 0]
 
-json.dump(sizes, open(os.path.join(OUT, 'sizes.json'), 'w'))
+json.dump(sizes, open(os.path.join(OUT, 'compat-sizes.json'), 'w'))  # distinct from make-charts.py's sizes.json
 print(sizes, nrows)
