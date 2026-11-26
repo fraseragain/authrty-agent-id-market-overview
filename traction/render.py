@@ -141,6 +141,11 @@ def esc(s):
     return html.escape(str(s))
 
 
+def pkg_label(name):
+    """'a+b' in the data means independent packages that are summed."""
+    return ' + '.join(name.split('+')) + (' (summed)' if '+' in name else '')
+
+
 def fmt(n):
     if n >= 1e6:
         return f'{n/1e6:.1f}M'.replace('.0M', 'M')
@@ -180,7 +185,7 @@ def chart_npm(notes=True):
         for grp, regs in groups.items():
             for reg, r in regs.items():
                 pub = f", {r['publisher']}" if r.get('publisher') else ''
-                parts.append(f"{r['package']} ({reg}, {grp}{pub}) {fmt(r['monthly'])} last 4 weeks")
+                parts.append(f"{pkg_label(r['package'])} ({reg}, {grp}{pub}) {fmt(r['monthly'])} last 4 weeks")
         if parts:
             extra.append(f'{p}: ' + '; '.join(parts))
     secs = [('Protocols with downloads that are not plotted here', ['This chart plots official npm packages only, up to the palette limit of eight series. These are in the all-registries chart:'] + extra),
@@ -247,7 +252,7 @@ def chart_npm(notes=True):
                                            'Each line starts at the first week with downloads.']))
         half = len(names) // 2
         for k, grp in enumerate((names[:half], names[half:])):
-            pkgs = '; '.join(f'{n}: {D["npm"][n]["pkg"]}' for n in grp)
+            pkgs = '; '.join(f'{n}: {pkg_label(D["npm"][n]["pkg"])}' for n in grp)
             b.append(f'<text class="ax" x="{L}" y="{ny+hbox+22+38+k*14}">{"Packages: " if k == 0 else ""}{esc(pkgs)}</text>')
     return svg(W, H, ''.join(b), 'Weekly npm downloads of each protocol main SDK',
                'Line chart on a log scale. ' + '; '.join(f'{n} {fmt(D["npm"][n]["weeks"][-1][1])} a week' for n in names))
@@ -406,7 +411,7 @@ def chart_downloads(notes=True):
         for p, groups, _, _ in rows_:
             regs = groups.get(group) or {}
             if regs:
-                parts = [f"{r['package']} ({reg}{', ' + r['publisher'] if r.get('publisher') else ''})" for reg, r in regs.items()]
+                parts = [f"{pkg_label(r['package'])} ({reg}{', ' + r['publisher'] if r.get('publisher') else ''})" for reg, r in regs.items()]
                 out += wrap(f'{p}: ' + ', '.join(parts))
         return out or ['none']
     alts = []
