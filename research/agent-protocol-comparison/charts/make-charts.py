@@ -6,11 +6,13 @@ OUT = sys.argv[2]   # output dir
 d = json.load(open(SRC))
 S, P = d['rubric_scores'], d['chain_scores']
 
-INK, INK2, MUTED = '#0b0b0b', '#52514e', '#898781'
-SURF, PLANE, GRID, AXIS = '#fcfcfb', '#f9f9f7', '#e1e0d9', '#c3c2b7'
-BLUE, ORANGE = '#2a78d6', '#eb6834'
-ABSENT, PARTIAL, MET = '#f0efec', '#86b6ef', '#184f95'
-FONT = 'system-ui,-apple-system,"Segoe UI",sans-serif'
+# Authrty brand palette (authrty.ai): navy #0D1421, indigo #3E42B6, lavender #B9BBF8, text #50565D, font Inter
+INK, INK2, MUTED = '#0D1421', '#50565D', '#7B7F88'
+SURF, PLANE, GRID, AXIS = '#FFFFFF', '#F7F7FA', '#E6E6EC', '#C9CAD6'
+BLUE, ORANGE = '#3E42B6', '#0D1421'  # totals and Harvey balls in indigo; adoption bars in navy
+ABSENT, PARTIAL, MET = '#F0F0F4', '#B9BBF8', '#3E42B6'
+FONT = 'Inter,system-ui,-apple-system,"Segoe UI",sans-serif'
+FONT_LINK = '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;650;700&display=block" rel="stylesheet">'
 
 NAMES = {'ACP': 'ACP (OpenAI, Stripe)', 'UCP': 'UCP', 'AP2': 'AP2', 'VI': 'Verifiable Intent',
          'TAP': 'Visa TAP', 'x402': 'x402', 'MPP': 'MPP', 'PAP': 'PAP (Poppy) 1.0', 'MCP': 'MCP',
@@ -20,10 +22,10 @@ SOURCE = 'Source: Authrty analysis of primary specifications, 25 Nov 2026. Rubri
 
 
 def page(title, sub, body, w, h, src=SOURCE):
-    return f'''<!doctype html><html><head><meta charset="utf-8"><title>{html.escape(title)}</title><style>
+    return f'''<!doctype html><html><head><meta charset="utf-8">{FONT_LINK}<title>{html.escape(title)}</title><style>
 html,body{{margin:0;background:{PLANE}}}
 body{{width:{w}px;font-family:{FONT};color:{INK}}}
-.card{{margin:16px;background:{SURF};border:1px solid rgba(11,11,11,.10);border-radius:12px;padding:28px 32px 22px}}
+.card{{margin:16px;background:{SURF};border:1px solid rgba(13,20,33,.10);border-radius:12px;padding:28px 32px 22px}}
 h1{{font-size:24px;font-weight:650;margin:0 0 6px;letter-spacing:-.01em}}
 .sub{{font-size:14px;color:{INK2};margin:0 0 18px;line-height:1.45;max-width:{w-120}px}}
 .src{{font-size:11.5px;color:{MUTED};margin-top:14px;line-height:1.4}}
@@ -109,7 +111,7 @@ def heat(rows, title, sub, best_row=False, label_w=250, extra=150, ghost_legend=
     # legend
     lx = 0
     for v in (2, 1, 0):
-        svg.append(f'<rect x="{lx}" y="4" width="22" height="16" rx="3" fill="{fill[v]}" stroke="rgba(11,11,11,.10)"/>'
+        svg.append(f'<rect x="{lx}" y="4" width="22" height="16" rx="3" fill="{fill[v]}" stroke="rgba(13,20,33,.10)"/>'
                    f'<text x="{lx+30}" y="17" font-size="13.5" fill="{INK}">{v} = {word[v]}</text>')
         lx += 120
     if ghost_legend:
@@ -237,9 +239,9 @@ ASRC = ('Link scores: Authrty analysis of primary specifications, 25 Nov 2026, w
         'Downloads of packages published by each protocol\'s maintainers on npm, PyPI and crates.io, 19 Oct to 15 Nov 2026; third-party packages excluded. '
         'Downloads include CI and dependency installs, not just users. Package list and notes in research/agent-protocol-comparison/adoption.json.')
 MODE = 'log'  # adoption bars: one log scale, 1 to 1 billion, shared by stars and downloads
-ALEG = ('<br><b>Orange bars show adoption</b>: GitHub stars and recent downloads, both on one log scale from 1 to 1 billion, so bar lengths compare across the two columns.'
+ALEG = ('<br><b>Navy bars show adoption</b>: GitHub stars and recent downloads, both on one log scale from 1 to 1 billion, so bar lengths compare across the two columns.'
         if MODE == 'log' else
-        ' <b>Orange bars show adoption</b>: GitHub stars and recent downloads, each as a linear share of the largest value in its column (A2A for stars, MCP for downloads).')
+        ' <b>Navy bars show adoption</b>: GitHub stars and recent downloads, each as a linear share of the largest value in its column (A2A for stars, MCP for downloads).')
 GP, ST = G['general_protocols'], G['stacks']
 L = ['L%d' % i for i in range(1, 11)]
 SRC2 = 'Source: Authrty analysis of primary specifications, 25 Nov 2026, with independent review. Rubrics, per-link citations and data in research/agent-protocol-comparison/.'
@@ -364,7 +366,7 @@ def coverage():
     svg = [f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}">']
     lx = 0
     for k, lab in (('yes', 'defined in the spec'), ('partial', 'generic hook only'), ('no', 'not covered')):
-        svg.append(f'<rect x="{lx}" y="4" width="22" height="16" rx="3" fill="{fill[k]}" stroke="rgba(11,11,11,.10)"/>'
+        svg.append(f'<rect x="{lx}" y="4" width="22" height="16" rx="3" fill="{fill[k]}" stroke="rgba(13,20,33,.10)"/>'
                    f'<text x="{lx+30}" y="17" font-size="13.5" fill="{INK}">{lab}</text>')
         lx += 200
     for i, (c, a, b) in enumerate(CLASSES):

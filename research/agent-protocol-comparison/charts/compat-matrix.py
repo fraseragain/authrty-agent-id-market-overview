@@ -11,15 +11,17 @@ import json, sys, html, os
 C = json.load(open(sys.argv[1]))
 OUT = sys.argv[2]
 
-INK, INK2, MUTED = '#0b0b0b', '#52514e', '#898781'
-SURF, PLANE, GRID, AXIS = '#fcfcfb', '#f9f9f7', '#e1e0d9', '#c3c2b7'
-ABSENT = '#f0efec'
-# one hue, light -> dark
-WILD = {'none': (ABSENT, INK), 'code': ('#fad7c2', INK), 'announced': ('#f08a55', INK), 'live': ('#b8471b', '#fff')}
+# Authrty brand palette (authrty.ai): navy #0D1421, indigo #3E42B6, lavender #B9BBF8, text #50565D, font Inter
+INK, INK2, MUTED = '#0D1421', '#50565D', '#7B7F88'
+SURF, PLANE, GRID, AXIS = '#FFFFFF', '#F7F7FA', '#E6E6EC', '#C9CAD6'
+ABSENT = '#F0F0F4'
+# one hue (Authrty indigo), light -> dark
+WILD = {'none': (ABSENT, INK), 'code': ('#D9DBFA', INK), 'announced': ('#A4A7F3', INK), 'live': ('#3E42B6', '#fff')}
 WILD_LABEL = {'live': 'Live', 'announced': 'Announced, preview or pilot', 'code': 'Code only', 'none': 'Not seen'}
 WRANK = {'live': 3, 'announced': 2, 'code': 1, 'none': 0}
 SRANK = {'defined': 2, 'mentioned': 1, 'none': 0}
-FONT = 'system-ui,-apple-system,"Segoe UI",sans-serif'
+FONT = 'Inter,system-ui,-apple-system,"Segoe UI",sans-serif'
+FONT_LINK = '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;650;700&display=block" rel="stylesheet">'
 
 NAMES = {'ACP': 'ACP (OpenAI, Stripe)', 'UCP': 'UCP', 'AP2': 'AP2', 'VI': 'Verifiable Intent',
          'TAP': 'Visa TAP', 'x402': 'x402', 'MPP': 'MPP', 'PAP': 'PAP (Poppy) 1.0', 'MCP': 'MCP',
@@ -70,10 +72,10 @@ def badge(x, y, n):
 
 
 def page(title, sub, body, w, src):
-    return f'''<!doctype html><html><head><meta charset="utf-8"><title>{html.escape(title)}</title><style>
+    return f'''<!doctype html><html><head><meta charset="utf-8">{FONT_LINK}<title>{html.escape(title)}</title><style>
 html,body{{margin:0;background:{PLANE}}}
 body{{width:{w}px;font-family:{FONT};color:{INK}}}
-.card{{margin:16px;background:{SURF};border:1px solid rgba(11,11,11,.10);border-radius:12px;padding:28px 32px 22px}}
+.card{{margin:16px;background:{SURF};border:1px solid rgba(13,20,33,.10);border-radius:12px;padding:28px 32px 22px}}
 h1{{font-size:24px;font-weight:650;margin:0 0 6px;letter-spacing:-.01em}}
 .sub{{font-size:14px;color:{INK2};margin:0 0 18px;line-height:1.45;max-width:{w-140}px}}
 .src{{font-size:11.5px;color:{MUTED};margin-top:14px;line-height:1.4}}
@@ -165,14 +167,14 @@ def tri_legend():
     def cell(fill, inner=''):
         return f'<svg width="34" height="34" style="flex:none"><rect x="0.5" y="0.5" width="33" height="33" rx="4" fill="{fill}"/>{inner}</svg>'
     fill_rows = ''.join(row(cell(WILD[k][0]), t) for k, t in [
-        ('live', '<b style="color:#0b0b0b">Live</b>: we found a generally available product that appears to run both in one flow (vendor pages, 26 Nov)'),
-        ('announced', '<b style="color:#0b0b0b">Announced</b>: documented, preview or pilot; we could not confirm general availability'),
-        ('code', '<b style="color:#0b0b0b">Code only</b>: both appear in at least one package file on GitHub'),
-        ('none', '<b style="color:#0b0b0b">Not seen</b>: none found in our search')])
-    glyph_rows = (row(cell(ABSENT, glyph(17, 17, 'defined', INK)), '<b style="color:#0b0b0b">Joined</b> (overlapping circles): at least one spec describes how the two combine (core, extension, binding, SHOULD or MAY)')
-                  + row(cell(ABSENT, glyph(17, 17, 'mentioned', INK)), '<b style="color:#0b0b0b">Mentioned</b> (one circle): referenced, proposed or given as an example, without a described join')
+        ('live', '<b style="color:#0D1421">Live</b>: we found a generally available product that appears to run both in one flow (vendor pages, 26 Nov)'),
+        ('announced', '<b style="color:#0D1421">Announced</b>: documented, preview or pilot; we could not confirm general availability'),
+        ('code', '<b style="color:#0D1421">Code only</b>: both appear in at least one package file on GitHub'),
+        ('none', '<b style="color:#0D1421">Not seen</b>: none found in our search')])
+    glyph_rows = (row(cell(ABSENT, glyph(17, 17, 'defined', INK)), '<b style="color:#0D1421">Joined</b> (overlapping circles): at least one spec describes how the two combine (core, extension, binding, SHOULD or MAY)')
+                  + row(cell(ABSENT, glyph(17, 17, 'mentioned', INK)), '<b style="color:#0D1421">Mentioned</b> (one circle): referenced, proposed or given as an example, without a described join')
                   + row(cell(ABSENT), 'No mark: we found no reference in either spec'))
-    other = (row(cell(ABSENT, f'<text x="7" y="26" font-size="15" font-weight="700" fill="{INK}">≈</text>'), '<b style="color:#0b0b0b">Same job</b>: largely overlapping roles, so a product would usually choose one')
+    other = (row(cell(ABSENT, f'<text x="7" y="26" font-size="15" font-weight="700" fill="{INK}">≈</text>'), '<b style="color:#0D1421">Same job</b>: largely overlapping roles, so a product would usually choose one')
              + row(cell(ABSENT, badge(24, 10, 'n')), 'Numbered note below: a possible gap or point of friction'))
     read = (f'<div style="margin-top:16px;padding:12px 14px;background:{PLANE};border-radius:8px">'
             f'<div class="kicker">How to read it</div>'
